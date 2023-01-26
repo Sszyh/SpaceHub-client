@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from './components/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import SearchPage from './components/SearchPage'
 
 function App() {
   const [message, setMessage] = useState("");
@@ -15,23 +17,16 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
-      <Home />
-      <Footer />
+      <Router>
+        <Header />
 
-    {/* Home */}
-      {/* Header */}
+          <Routes>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/" element={<Home />} />                     
+          </Routes>
 
-      {/* Banner */}
-
-      {/* Cards */}
-
-      {/* Footer */}
-
-    {/* SearchPage */}
-      {/* Header */}
-      {/* ... */}
-
+        <Footer />
+      </Router>
     </div>
   );
 }
