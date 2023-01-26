@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Home from './components/Home'
+import Header from './components/Header'
 
 function App() {
   const [message, setMessage] = useState("");
@@ -11,8 +13,23 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>{message}</h1>
+    <div className="app">
+      <Header />
+      <Home />
+
+    {/* Home */}
+      {/* Header */}
+
+      {/* Banner */}
+
+      {/* Cards */}
+
+      {/* Footer */}
+
+    {/* SearchPage */}
+      {/* Header */}
+      {/* ... */}
+
     </div>
   );
 }
