@@ -2,11 +2,13 @@ import React from 'react'
 import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
+import TestCard from './TestCard'
 
 function Home() {
   return (
     <div className='home'>
       <Banner />
+      <TestCard />
 
       <div className='home__section'>
         <Card
