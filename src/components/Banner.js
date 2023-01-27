@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/Banner.css'
 import { Button } from '@mui/material'
 import Search from '../components/Search'
 
 function Banner() {
 
+  const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
 
   return (
@@ -22,6 +24,7 @@ function Banner() {
         <h1>Find your space</h1>
         <h5>Connecting you with the perfect space for your creativity.</h5>
         <Button
+          onClick={() => navigate('/search')}
           variant='outlined'
         >Explore Nearby</Button>
       </div>

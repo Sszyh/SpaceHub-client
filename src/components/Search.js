@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import '../styles/Search.css'
 import { Button } from '@mui/material'
 import { DateRangePicker } from 'react-date-range'
+import { useNavigate } from 'react-router-dom'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 
 function Search() {
 
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -27,7 +29,9 @@ function Search() {
         ranges={[selectionRange]}
         onChange={handleSelect}
       />
-      <Button>Search SpaceHub</Button>
+      <Button
+        onClick={() => navigate('/search')}
+      >Search SpaceHub</Button>
     </div>
   )
 }
