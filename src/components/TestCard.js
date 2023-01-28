@@ -28,7 +28,7 @@ export default function TestCard() {
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           sx={{ height: 140 }}
-          src={properties[0].image_url}
+          src={"https://images.unsplash.com/photo-1534511902651-6ab0ce131f2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80"}
           title="green iguana"
         />
         <CardContent>

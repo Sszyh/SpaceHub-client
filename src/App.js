@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SearchPage from './components/SearchPage'
+import SearchResult from "./components/SearchResult";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -18,11 +19,12 @@ function App() {
   return (
     <div className="app">
       <Router>
+        
         <Header />
-
           <Routes>
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/" element={<Home />} />                     
+            <Route path="/" element={<Home />} />  
+            <Route path="/search/:term" element={<SearchResult />} />                   
           </Routes>
 
         <Footer />

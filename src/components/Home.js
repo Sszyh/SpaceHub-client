@@ -7,6 +7,7 @@ import TestCard from './TestCard'
 function Home() {
   return (
     <div className='home'>
+      
       <Banner />
       <TestCard />
 
