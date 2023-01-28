@@ -1,16 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
 import TestCard from './TestCard'
 
 function Home() {
+
+  const [properties, setProperties] = useState([]);
+  useEffect(() => {
+    
+    fetch("http://localhost:8000/properties")
+  
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data,"dataaa")
+        setProperties(data.properties)});
+  }, []);
+
+
   return (
+    <Fragment>
+      {properties.length > 0 && 
     <div className='home'>
       <Banner />
-      <TestCard />
+      <Card 
+        properties={properties}/>
 
-      <div className='home__section'>
+      {/* <div className='home__section'>
         <Card
           src="https://images.unsplash.com/photo-1534511902651-6ab0ce131f2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80"
           title="Industrial Studio in Ottawa"
@@ -50,9 +66,11 @@ function Home() {
           description="A sleek, minimal space with white walls and a large skylight, great for sculptors or designers."
           price="$40/day"        
         />
-      </div>
+      </div> */}
 
     </div>
+    }
+    </Fragment>
   )
 }
 
