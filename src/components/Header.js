@@ -1,12 +1,13 @@
-import React from 'react'
-import '../styles/Header.css'
-import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
+import '../styles/Header.css';
 import { Avatar } from '@mui/material/';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import SearchInput from "./searchInput";
 
 function Header() {
-  return (
-    <div className='header'>
+
+    return (
+      <div className='header'>
 
       <Link to='/'>
         <img
@@ -16,16 +17,13 @@ function Header() {
         />
       </Link>
 
-      <div className='header__center'>
-        <input type="text" />
-        <SearchIcon />
-      </div>
+      <SearchInput/>
 
       <div className='header__right'>
         <Avatar />
       </div>
     </div>
-  )
-}
+    );
+  };
 
-export default Header
+export default Header;
