@@ -12,6 +12,7 @@ export default function SearchList(props){
                 title={item.title}
                 rating={item.average_rating}
                 price_per_day={item.price_per_day}
+                desc_long={item.desc_long}
                 
             />
         )

@@ -15,6 +15,7 @@ export default function SearchItem(props){
                     <h3>{props.title}</h3>
                     <p>{props.city}</p>
                     <p>____</p>
+                    <p>{props.desc_long}</p>
                 </div>
                 <div className='searchResult__infoBottom'>
                     <div className='searchResult__stars'>
