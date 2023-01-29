@@ -24,7 +24,8 @@ export default function SearchResult() {
     // </>
 
     <div className='searchResult'>
-        <img src={search[0]? search[0].img_url : ""} alt=""/>
+        <img src = {search[0]? search[0].img_url : ""} alt=""/>
+        {/* <img src = "https://images.unsplash.com/photo-1534511902651-6ab0ce131f2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80" alt=""/> */}
           <FavoriteBorderIcon className='searchResult__heart'/>
           <div className='searchResult__info'>
             <div className='searchResult__infoTop'>
