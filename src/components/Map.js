@@ -46,7 +46,8 @@ export default function Map(props) {
         key={props.coord_lat}
         {...viewport}
         mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
-        mapboxAccessToken='pk.eyJ1Ijoic3N6eWgiLCJhIjoiY2xkaHJhdjQ1MGdjcDNwbzVxeXY5bnJkcyJ9.yTQ0TwZe9z-pUVZgkYzwaQ'
+        mapboxAccessToken="pk.eyJ1Ijoic3N6eWgiLCJhIjoiY2xkajlsenF2MGF6djNybXNieDlrcHBweiJ9.byuavp8DCXMKSfsejmeI_w"
+        // mapboxAccessToken={process.env.REACT_APP_mapbox_token}
         onDrag={handleDrag} >
 
         {props.properties.map(result => (
