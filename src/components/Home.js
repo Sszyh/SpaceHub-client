@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
+import Map from '../components/Map'
 
 function Home() {
 
@@ -18,9 +19,14 @@ function Home() {
   return (
     <Fragment>
       {properties.length > 0 && 
-      <div className='home'>
-        <Banner />
-        <Card properties={properties}/>
+      <div>
+        <section className='home'>
+          <Banner />
+          <Card properties={properties}/>
+        </section>
+        <section className='xl:inline-flex xl:min-w-[600px]'>
+          <Map properties={properties}/>
+        </section>
       </div>
       }
     </Fragment>
