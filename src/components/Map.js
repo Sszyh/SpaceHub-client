@@ -1,0 +1,85 @@
+import React, { useState } from 'react';
+import ReactMapGl, { Marker, Popup } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import '../styles/Map.css';
+import getCenter from 'geolib/es/getCenter';
+
+export default function Map(props) {
+
+  const [selectedLocation, setSelectedLocation] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+
+  const coordinates = props.properties.map(result => ({
+    longitude: result.coord_long,
+    latitude: result.coord_lat
+  }));
+  const center = getCenter(coordinates);
+
+  const [viewport, setViewport] = useState({
+    width: '100%',
+    height: '100%',
+    latitude: center.latitude,
+    longitude: center.longitude,
+    zoom: 4,
+  })
+
+  const handleDrag = (lngLat) => {
+    setViewport({
+      ...viewport,
+      longitude: lngLat.viewState.longitude,
+      latitude: lngLat.viewState.latitude
+    });
+  };
+
+  const handleClick = (result) => {
+    console.log('fire');
+    // setSelectedLocation(result);
+    // setShowPopup(true);
+    const w=window.open("d");
+    w.location.href=result.id
+  }
+
+  // console.log(selectedLocation,"sele")
+  return (
+    <div className='maphub'>
+      <ReactMapGl
+        key={props.coord_lat}
+        {...viewport}
+        mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
+        mapboxAccessToken='pk.eyJ1Ijoic3N6eWgiLCJhIjoiY2xkaHJhdjQ1MGdjcDNwbzVxeXY5bnJkcyJ9.yTQ0TwZe9z-pUVZgkYzwaQ'
+        onDrag={handleDrag} >
+
+        {props.properties.map(result => (
+          <div key={result.id}>
+            <Marker
+              longitude={result.coord_long}
+              latitude={result.coord_lat}
+              offsetLeft={-20}
+              offsetTop={-10} >
+
+              <p
+                onClick={()=> handleClick(result)}
+                className='cursor-pointer text-2xl animate-bounce'
+                >😈</p>
+
+            </Marker>
+
+            {showPopup && selectedLocation && (
+              <Popup
+                longitude={selectedLocation.coord_long}
+                latitude={selectedLocation.coord_lat}
+                // anchor="bottom"
+                onClose={() => setShowPopup(false)}
+                >
+                {selectedLocation.title}
+                <h2
+                // style={hStyle}
+                >Hello</h2>
+              </Popup>)
+            }
+          </div>
+        ))}
+      </ReactMapGl>
+    </div>
+  )
+}
