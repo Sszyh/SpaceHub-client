@@ -5,28 +5,27 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 function Card(props) {
+
   const cards = props.properties.map((card) => {
     return (
-      <CardItem
-        key={card.id}
-        src={card.image_url}
-        title={card.title}
-        price={card.price_per_day}
+      <Grid item xs={12} sm={6} md={4} key={card.id}>
+        <CardItem
+          src={card.image_url}
+          title={card.title}
+          price={card.price_per_day}
+          description={card.description}
         />
-      
+      </Grid>
     );
   });
-  return(
+
+  return (
     <Box sx={{ flexGrow: 1}}>
-      <Grid container spacing={4} >
-        <Grid item xs={6} sm={6} md={4}>
-          <ul>
-            {cards}
-          </ul>
-        </Grid>
+      <Grid container spacing={4}>
+        {cards}
       </Grid>
     </Box>
-  )
+  );
 }
 
 export default Card

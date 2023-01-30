@@ -1,4 +1,6 @@
 .home__section {
   display: flex;
   padding: 30px;
+  margin-top: 20px;
+  /* flex-direction: row; */
 }
