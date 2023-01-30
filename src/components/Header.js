@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Header.css';
 import { Avatar } from '@mui/material/';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SearchInput from "./searchInput";
 
 function Header() {

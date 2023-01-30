@@ -22,7 +22,7 @@ function App() {
         
         <Header />
           <Routes>
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/search" element={<SearchResult />} />
             <Route path="/" element={<Home />} />  
             <Route path="/search/:term" element={<SearchResult />} />                   
           </Routes>
