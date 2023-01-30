@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/Header.css'
 import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material/';
 import { Link } from 'react-router-dom';
 
