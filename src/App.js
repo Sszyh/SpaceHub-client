@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import SearchPage from './components/SearchPage'
 import SearchResult from "./components/SearchResult";
+import Property from "./components/Property";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -22,9 +23,10 @@ function App() {
         
         <Header />
           <Routes>
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/" element={<Home />} />  
-            <Route path="/search/:term" element={<SearchResult />} />                   
+            <Route path="/search" element={<SearchPage />} /> 
+            <Route path="/search/:term" element={<SearchResult />} />
+            <Route path="/property/" element={<Property />}/>
+            <Route path="/" element={<Home />} />                    
           </Routes>
 
         <Footer />
