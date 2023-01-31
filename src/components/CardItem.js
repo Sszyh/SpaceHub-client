@@ -26,9 +26,7 @@ function CardItem(props) {
           {props.title}
         </Typography>
         <Typography variant='body2' color='GrayText.secondary'>
-          {/* description */}
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {props.description}
         </Typography>
       </CardContent>
       <CardActions>

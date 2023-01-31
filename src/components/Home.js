@@ -3,6 +3,7 @@ import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
 import Map from '../components/Map'
+import Test from '../components/Test'
 
 function Home() {
 
@@ -23,8 +24,9 @@ function Home() {
         <section className='home'>
           <Banner />
           <Card properties={properties}/>
+          {/* <Test /> */}
         </section>
-        <section className='xl:inline-flex xl:min-w-[600px]'>
+        <section>
           <Map properties={properties}/>
         </section>
       </div>

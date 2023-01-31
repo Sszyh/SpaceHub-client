@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactMapGl, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/Map.css';
@@ -8,6 +8,7 @@ export default function Map(props) {
 
   const [selectedLocation, setSelectedLocation] = useState({});
   const [showPopup, setShowPopup] = useState(false);
+  const [zoom, setZoom] = useState('6');
 
   const coordinates = props.properties.map(result => ({
     longitude: result.coord_long,
@@ -27,28 +28,32 @@ export default function Map(props) {
     setViewport({
       ...viewport,
       longitude: lngLat.viewState.longitude,
-      latitude: lngLat.viewState.latitude
+      latitude: lngLat.viewState.latitude,
+      // zoom: 5
     });
   };
+
+  const handleZoom = (lngLat) => {
+    setZoom(9)
+  }
 
   const handleClick = (result) => {
     console.log('fire');
     // setSelectedLocation(result);
     // setShowPopup(true);
-    const w=window.open("d");
-    w.location.href=result.id
+    const w = window.open("d");
+    w.location.href = result.id
   }
-
-  // console.log(selectedLocation,"sele")
   return (
     <div className='maphub'>
       <ReactMapGl
         key={props.coord_lat}
         {...viewport}
         mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
-        mapboxAccessToken="pk.eyJ1Ijoic3N6eWgiLCJhIjoiY2xkajlsenF2MGF6djNybXNieDlrcHBweiJ9.byuavp8DCXMKSfsejmeI_w"
-        // mapboxAccessToken={process.env.REACT_APP_mapbox_token}
-        onDrag={handleDrag} >
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        onDrag={handleDrag}
+        onZoom={handleZoom}
+         >
 
         {props.properties.map(result => (
           <div key={result.id}>

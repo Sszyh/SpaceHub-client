@@ -13,7 +13,7 @@ function Card(props) {
           src={card.image_url}
           title={card.title}
           price={card.price_per_day}
-          description={card.description}
+          description={card.desc_long}
         />
       </Grid>
     );
