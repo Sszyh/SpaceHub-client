@@ -14,6 +14,7 @@ function Card(props) {
           title={card.title}
           price={card.price_per_day}
           description={card.desc_long}
+          id={card.id}
         />
       </Grid>
     );

@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { Link } from 'react-router-dom';
 function CardItem(props) {
   
   return (
@@ -30,7 +30,7 @@ function CardItem(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Book Now</Button>
+        <Link to={`./${props.id}`} className="btn btn-primary">Book Now</Link>
       </CardActions>
     </Card>
   );
