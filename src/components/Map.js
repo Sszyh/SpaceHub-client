@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import ReactMapGl, { Marker, Popup } from 'react-map-gl';
+import ReactMapGl, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/Map.css';
 import getCenter from 'geolib/es/getCenter';
 
 export default function Map(props) {
-
-  // const [selectedLocation, setSelectedLocation] = useState({});
-  // const [showPopup, setShowPopup] = useState(false);
-  // const [zoom, setZoom] = useState('6');
 
   const coordinates = props.properties.map(result => ({
     longitude: result.coord_long,
@@ -40,12 +36,10 @@ export default function Map(props) {
   }
 
   const handleClick = (result) => {
-    // console.log('fire');
-    // setSelectedLocation(result);
-    // setShowPopup(true);
     const w = window.open();
     w.location.href = `/properties/${result.id}`
   }
+
   return (
     <div className='maphub'>
       <ReactMapGl
@@ -55,7 +49,7 @@ export default function Map(props) {
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         onDrag={handleDrag}
         onZoom={handleZoom}
-         >
+      >
 
         {props.properties.map(result => (
           <div key={result.id}>
@@ -66,25 +60,10 @@ export default function Map(props) {
               offsetTop={-10} >
 
               <p
-                onClick={()=> handleClick(result)}
-                className='cursor-pointer text-2xl animate-bounce'
-                >😈</p>
-
+                onClick={() => handleClick(result)}
+                // className='cursor-pointer text-2xl animate-bounce'
+              >😈</p>
             </Marker>
-
-            {/* {showPopup && selectedLocation && (
-              <Popup
-                longitude={selectedLocation.coord_long}
-                latitude={selectedLocation.coord_lat}
-                // anchor="bottom"
-                onClose={() => setShowPopup(false)}
-                >
-                {selectedLocation.title}
-                <h2
-                // style={hStyle}
-                >Hello</h2>
-              </Popup>)
-            } */}
           </div>
         ))}
       </ReactMapGl>
