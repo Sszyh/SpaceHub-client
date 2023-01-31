@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMapGl, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/Map.css';
@@ -6,9 +6,9 @@ import getCenter from 'geolib/es/getCenter';
 
 export default function Map(props) {
 
-  const [selectedLocation, setSelectedLocation] = useState({});
-  const [showPopup, setShowPopup] = useState(false);
-  const [zoom, setZoom] = useState('6');
+  // const [selectedLocation, setSelectedLocation] = useState({});
+  // const [showPopup, setShowPopup] = useState(false);
+  // const [zoom, setZoom] = useState('6');
 
   const coordinates = props.properties.map(result => ({
     longitude: result.coord_long,
@@ -29,20 +29,22 @@ export default function Map(props) {
       ...viewport,
       longitude: lngLat.viewState.longitude,
       latitude: lngLat.viewState.latitude,
-      // zoom: 5
     });
   };
 
   const handleZoom = (lngLat) => {
-    setZoom(9)
+    setViewport({
+      ...viewport,
+      zoom: lngLat.viewState.zoom
+    });
   }
 
   const handleClick = (result) => {
-    console.log('fire');
+    // console.log('fire');
     // setSelectedLocation(result);
     // setShowPopup(true);
-    const w = window.open("d");
-    w.location.href = result.id
+    const w = window.open();
+    w.location.href = `/properties/${result.id}`
   }
   return (
     <div className='maphub'>
@@ -70,7 +72,7 @@ export default function Map(props) {
 
             </Marker>
 
-            {showPopup && selectedLocation && (
+            {/* {showPopup && selectedLocation && (
               <Popup
                 longitude={selectedLocation.coord_long}
                 latitude={selectedLocation.coord_lat}
@@ -82,7 +84,7 @@ export default function Map(props) {
                 // style={hStyle}
                 >Hello</h2>
               </Popup>)
-            }
+            } */}
           </div>
         ))}
       </ReactMapGl>

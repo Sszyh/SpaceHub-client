@@ -30,7 +30,8 @@ function CardItem(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`./${props.id}`} className="btn btn-primary">Book Now</Link>
+        <Link to={`./properties/${props.id}`} >Book Now
+        </Link >
       </CardActions>
     </Card>
   );
