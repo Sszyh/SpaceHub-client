@@ -1,23 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../styles/Banner.css'
 import { Button } from '@mui/material'
-import Search from '../components/Search'
 
 function Banner() {
 
-  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <div className='banner'>
-      <div className='banner__search'>
-        {showSearch && <Search />}
-        <Button
-          onClick={() => setShowSearch(!showSearch)}
-          className='banner__searchButton'
-          variant='outlined'>
-            {showSearch ? "Hide" : "Search Dates"}
-        </Button>
-      </div>
       <div className='banner__info'>
         <h1>Find your space</h1>
         <h5>Connecting you with the perfect space for your creativity.</h5>

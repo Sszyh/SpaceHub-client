@@ -5,10 +5,8 @@ import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 import { useNavigate } from "react-router-dom";
-import SearchInput from './searchInput'
-
+//removed to Header.js
 function Search() {
-  const [input, setInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -24,20 +22,14 @@ function Search() {
     setEndDate(ranges.selection.endDate);
   }
 
-  function handleInput(value) {
-    setInput(value);
-  }
-
   function handleClick() {
     const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
-    // navigate(`/search?days=${totalDays}&input=${input}`);
-    navigate(`/search/${input}`)
+    navigate(`/search?days=${totalDays}`);
   }
 
 
   return (
     <div className='search'>
-        <SearchInput onInput={handleInput} /> 
         <DateRangePicker
         ranges={[selectionRange]}
         onChange={handleSelect}

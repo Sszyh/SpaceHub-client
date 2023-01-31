@@ -12,8 +12,10 @@ export default function SearchList(props){
     const list = props.properties.map((item)=>{
         const price_per_day = item.price_per_day;
         const cleanPrice = parseFloat(price_per_day.replace("$", ""));
-        const total_price = cleanPrice * totalDays;
-        console.log(Number(cleanPrice));
+        let total_price = cleanPrice * totalDays;
+        if(total_price===0){
+            total_price=cleanPrice
+        }
         return(
             <SearchItem 
                 src={item.image_url}

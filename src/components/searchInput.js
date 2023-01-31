@@ -21,20 +21,3 @@ const SearchInput = () => {
 };
 
 export default SearchInput;
-
-// function SearchInput({ onInput }) {
-//   const [value, setValue] = React.useState("");
-
-//   function handleChange(event) {
-//     setValue(event.target.value);
-//   }
-
-//   return (
-//     <div className="search-input">
-//       <input type="text" value={value} onChange={handleChange} />
-//       <button onClick={() => onInput(value)}>Submit</button>
-//     </div>
-//   );
-// }
-
-// export default SearchInput;

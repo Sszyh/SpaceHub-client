@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
+import Header from './Header';
 
 function Home() {
 
@@ -19,6 +20,7 @@ function Home() {
     <Fragment>
       {properties.length > 0 && 
       <div className='home'>
+        <Header />
         <Banner />
         <Card properties={properties}/>
       </div>

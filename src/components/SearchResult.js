@@ -5,11 +5,15 @@ import StarIcon from '@mui/icons-material/StarBorder';
 import {useParams} from "react-router-dom" ;
 import { Button } from '@mui/material';
 import SearchList from './SearchList';
+import { useLocation } from "react-router-dom";
+import {format} from "date-fns";
+import Header from './Header';
 
 
 export default function SearchResult() {
   const [search, setSearch] = useState([]);
   const {term} = useParams(); 
+
   useEffect(() => {
     
     fetch(`http://localhost:8000/search/${term}`)
@@ -20,11 +24,22 @@ export default function SearchResult() {
         setSearch(result.searchResult)});
     }, [term]);
 
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    
+    const total_guests = params.get("guests")||1;
+    const totalDays = params.get("days")||1;
+    const startDate = params.get("start");
+    const endDate = params.get("end");
+
+    const formattedStartDate = format(new Date(startDate),"dd MMMM");
+    const formattedEndDate = format(new Date(endDate),"dd MMMM");
     return(
       <>
+        <Header placeholder={`${term} | ${total_guests} guests | ${totalDays} days`}/>
         <div className='searchPage'>
           <div className='searchPage__info'>
-            <p>12 stays · 5 February to 11 February · 2 guest</p>
+            <p>{search.length} stays · {formattedStartDate} to {formattedEndDate} · {total_guests} guest</p>
             <h1>Stays nearby</h1>
             <Button variant="outlined">
               Cancellation Flexibility
