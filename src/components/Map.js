@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import ReactMapGl, { Marker, Popup } from 'react-map-gl';
+import ReactMapGl, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/Map.css';
 import getCenter from 'geolib/es/getCenter';
 
 export default function Map(props) {
-
-  const [selectedLocation, setSelectedLocation] = useState({});
-  const [showPopup, setShowPopup] = useState(false);
 
   const coordinates = props.properties.map(result => ({
     longitude: result.coord_long,
@@ -27,28 +24,32 @@ export default function Map(props) {
     setViewport({
       ...viewport,
       longitude: lngLat.viewState.longitude,
-      latitude: lngLat.viewState.latitude
+      latitude: lngLat.viewState.latitude,
     });
   };
 
-  const handleClick = (result) => {
-    console.log('fire');
-    // setSelectedLocation(result);
-    // setShowPopup(true);
-    const w=window.open("d");
-    w.location.href=result.id
+  const handleZoom = (lngLat) => {
+    setViewport({
+      ...viewport,
+      zoom: lngLat.viewState.zoom
+    });
   }
 
-  // console.log(selectedLocation,"sele")
+  const handleClick = (result) => {
+    const w = window.open();
+    w.location.href = `/properties/${result.id}`
+  }
+
   return (
     <div className='maphub'>
       <ReactMapGl
         key={props.coord_lat}
         {...viewport}
         mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
-        mapboxAccessToken="pk.eyJ1Ijoic3N6eWgiLCJhIjoiY2xkajlsenF2MGF6djNybXNieDlrcHBweiJ9.byuavp8DCXMKSfsejmeI_w"
-        // mapboxAccessToken={process.env.REACT_APP_mapbox_token}
-        onDrag={handleDrag} >
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        onDrag={handleDrag}
+        onZoom={handleZoom}
+      >
 
         {props.properties.map(result => (
           <div key={result.id}>
@@ -59,25 +60,10 @@ export default function Map(props) {
               offsetTop={-10} >
 
               <p
-                onClick={()=> handleClick(result)}
-                className='cursor-pointer text-2xl animate-bounce'
-                >😈</p>
-
+                onClick={() => handleClick(result)}
+                // className='cursor-pointer text-2xl animate-bounce'
+              >😈</p>
             </Marker>
-
-            {showPopup && selectedLocation && (
-              <Popup
-                longitude={selectedLocation.coord_long}
-                latitude={selectedLocation.coord_lat}
-                // anchor="bottom"
-                onClose={() => setShowPopup(false)}
-                >
-                {selectedLocation.title}
-                <h2
-                // style={hStyle}
-                >Hello</h2>
-              </Popup>)
-            }
           </div>
         ))}
       </ReactMapGl>

@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { Link } from 'react-router-dom';
 function CardItem(props) {
   
   return (
@@ -26,13 +26,12 @@ function CardItem(props) {
           {props.title}
         </Typography>
         <Typography variant='body2' color='GrayText.secondary'>
-          {/* description */}
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {props.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Book Now</Button>
+        <Link to={`./properties/${props.id}`} >Book Now
+        </Link >
       </CardActions>
     </Card>
   );

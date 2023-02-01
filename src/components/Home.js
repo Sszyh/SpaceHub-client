@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/Home.css'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
@@ -8,28 +8,25 @@ function Home() {
 
   const [properties, setProperties] = useState([]);
   useEffect(() => {
-    
+
     fetch("http://localhost:8000/properties")
-  
+
       .then((res) => res.json())
       .then((data) => {
-        setProperties(data.properties)});
+        setProperties(data.properties)
+      });
   }, []);
 
   return (
-    <Fragment>
-      {properties.length > 0 && 
+    properties.length > 0 &&
+    <div className='home'>
+      <Banner />
       <div>
-        <section className='home'>
-          <Banner />
-          <Card properties={properties}/>
-        </section>
-        <section className='xl:inline-flex xl:min-w-[600px]'>
-          <Map properties={properties}/>
-        </section>
+        <Card properties={properties} />
+        <Map properties={properties} />
       </div>
-      }
-    </Fragment>
+    </div>
+
   )
 }
 
