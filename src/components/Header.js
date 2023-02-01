@@ -62,7 +62,7 @@ function Header({placeholder}) {
          <input 
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)} 
-          placeholder={placeholder || "start your search"}
+          placeholder={placeholder || "Start your search"}
         />
          <SearchIcon onClick={handleSearch}/>
        </div>
