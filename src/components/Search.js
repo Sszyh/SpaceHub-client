@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/Search.css'
 import { Button } from '@mui/material'
+import PeopleIcon from '@mui/icons-material/People';
 import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
