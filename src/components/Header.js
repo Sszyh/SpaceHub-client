@@ -68,7 +68,9 @@ function Header({placeholder}) {
        </div>
 
         <div className='header__right'>
-          <Avatar />
+          <Avatar >
+            <Link to ={`/users/signin`} >Sign In</Link>
+          </Avatar>
         </div>
         {searchTerm&&(
          <div className='search'>
