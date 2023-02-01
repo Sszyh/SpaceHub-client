@@ -19,7 +19,7 @@ function Header({placeholder}) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noofGuests, setNoofGuests] = useState(1);
-
+  const [uId,setUID] = useState("");
 
   const navigate = useNavigate();
   
@@ -47,6 +47,13 @@ function Header({placeholder}) {
     resetInput()
   }
 
+  function handleLogIn(){
+    setUID(1);
+  }
+
+  function handleUser(){
+    navigate(`/user/${uId}`)
+  }
 
     return (
       <div className='header'>
@@ -68,7 +75,9 @@ function Header({placeholder}) {
        </div>
 
         <div className='header__right'>
-          <Avatar />
+          <Avatar onClick={handleUser}/>
+          <Button onClick={handleLogIn}>LogIn</Button>
+
         </div>
         {searchTerm&&(
          <div className='search'>
