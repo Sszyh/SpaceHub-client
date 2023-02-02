@@ -20,7 +20,6 @@ function Header({placeholder}) {
   const [endDate, setEndDate] = useState(new Date());
   const [noofGuests, setNoofGuests] = useState(1);
   const [uId,setUID] = useState("");
-
   const navigate = useNavigate();
   
   const handleSearch = () => {
@@ -48,11 +47,15 @@ function Header({placeholder}) {
   }
 
   function handleLogIn(){
-    setUID(1);
+    setUID(4);
   }
 
   function handleUser(){
     navigate(`/user/${uId}`)
+  }
+
+  function handleHost(){
+    navigate(`/host/1`)
   }
 
     return (
@@ -79,6 +82,12 @@ function Header({placeholder}) {
           <Button onClick={handleLogIn}>LogIn</Button>
 
         </div>
+
+        <div className='header__right'>
+          <Button onClick={handleHost}>I'm host</Button>
+
+        </div>
+
         {searchTerm&&(
          <div className='search'>
             <DateRangePicker

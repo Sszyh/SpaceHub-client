@@ -7,8 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+
 function CardItem(props) {
-  
+  console.log(props.ifHost)
   return (
     <Card
       className='card'
@@ -29,8 +30,9 @@ function CardItem(props) {
           {props.description}
         </Typography>
       </CardContent>
+      
       <CardActions>
-        <Link to={`./properties/${props.id}`} >Book Now
+        <Link to={`./properties/${props.id}`} >{props.ifHost===0?"":"Book Now"}
         </Link >
       </CardActions>
     </Card>

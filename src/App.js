@@ -9,6 +9,7 @@ import SearchResult from "./components/SearchResult";
 import Property from "./components/Property";
 import Details from "./components/Details";
 import User from "./components/User";
+import Host from "./components/Host";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -30,6 +31,7 @@ function App() {
             <Route path="/properties/:id" element={<Details />} />
             <Route path="/user" element={<User />} />
             <Route path="/user/:id" element={<User />} />
+            <Route path="/host/:id" element={<Host />} />
             <Route path="/" element={<Home />} />                    
           </Routes>
 
