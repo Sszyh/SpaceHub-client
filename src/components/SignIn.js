@@ -12,6 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import {useState} from 'react';
+import { unstable_composeClasses } from '@mui/material';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
+
 
 function Copyright(props) {
   return (
@@ -28,15 +36,40 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+export default function signin(props) {
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const [loginStatus,setLoginStatus] = useState("");
+  const [cookies, setCookies] = useCookies(["user-"]);
+  const navigate = useNavigate();
+
+
+  const login = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:8000/users/login",{
+      email: email,
+      password: password,
+    }).then((response) => {
+      console.log(response,"resss")
+      if(response.data){
+        // setLoginStatus(response.data.message);
+        console.log("3333333");
+        navigate('/');
+        console.log("444444");
+        setCookies('user_obj',response.data.user, { path: '/' });
+        // props.user = cookies;
+        // setState()
+        console.log("coooo",cookies);
+        // setCookies('first_name', response.data.user.first_name, { path: '/' });
+      } else {
+        setLoginStatus(response.data.user.email);
+      }
+      
+    }).catch((err) => {
+     console.log(err,"Err")
+    })
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -56,7 +89,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={login} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -64,6 +97,7 @@ export default function SignIn() {
               id="email"
               label="Email Address"
               name="email"
+              onChange={(e) => {setEmail(e.target.value)}}
               autoComplete="email"
               autoFocus
             />
@@ -72,6 +106,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
+              onChange={(e) => {setPassword(e.target.value)}}
               label="Password"
               type="password"
               id="password"
