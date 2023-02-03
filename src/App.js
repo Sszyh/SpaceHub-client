@@ -8,6 +8,8 @@ import SearchPage from './components/SearchPage'
 import SearchResult from "./components/SearchResult";
 import Property from "./components/Property";
 import Details from "./components/Details";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -27,7 +29,9 @@ function App() {
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
             <Route path="/properties/:id" element={<Details />} />
-            <Route path="/" element={<Home />} />                    
+            <Route path="/" element={<Home />} />
+            <Route path="/users/signup" element={<SignUp />} />    
+            <Route path="/users/signin" element={<SignIn />} />          
           </Routes>
 
         <Footer />
