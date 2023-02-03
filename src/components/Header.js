@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import '../styles/Header.css';
 import '../styles/Search.css'
 import { Button } from '@mui/material'
@@ -19,7 +19,7 @@ function Header({ placeholder }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noofGuests, setNoofGuests] = useState(1);
-  const [cookies, setCookie] = useCookies();
+  const [cookies, setCookie, removeCookies] = useCookies();
 
   const navigate = useNavigate();
 
@@ -48,6 +48,9 @@ function Header({ placeholder }) {
     resetInput()
   }
 
+  function logout() {
+    removeCookies('user_obj', { path: '/' });
+  }
 
   return (
     <div className='header'>
@@ -69,14 +72,22 @@ function Header({ placeholder }) {
       </div>
 
       <div className='header__right'>
-        <div>
-          {cookies.user_obj && <p>Login as {cookies.user_obj.first_name}</p>}
-        </div>
-        <Avatar >
-          <Link to={`/users/signin`} >
-            L
-          </Link>
-        </Avatar>
+        {cookies.user_obj ?
+          <p>Login as {cookies.user_obj.first_name}
+            <Button
+              variant='contained'
+              size="small"
+              color="secondary"
+              onClick={logout}>
+              logout
+            </Button>
+          </p> :
+          <Avatar >
+            <Link to={`/users/signin`} >
+              L
+            </Link>
+          </Avatar>
+        }
       </div>
       {searchTerm && (
         <div className='search'>
