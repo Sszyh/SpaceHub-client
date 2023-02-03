@@ -14,11 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import {useState} from 'react';
-import { unstable_composeClasses } from '@mui/material';
-import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
 
 
 function Copyright(props) {
@@ -36,7 +33,6 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-
 export default function signin(props) {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -53,15 +49,11 @@ export default function signin(props) {
     }).then((response) => {
       console.log(response,"resss")
       if(response.data){
-        // setLoginStatus(response.data.message);
         console.log("3333333");
         navigate('/');
         console.log("444444");
         setCookies('user_obj',response.data.user, { path: '/' });
-        // props.user = cookies;
-        // setState()
         console.log("coooo",cookies);
-        // setCookies('first_name', response.data.user.first_name, { path: '/' });
       } else {
         setLoginStatus(response.data.user.email);
       }
