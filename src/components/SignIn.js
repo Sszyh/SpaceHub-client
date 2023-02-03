@@ -33,7 +33,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function signin(props) {
+export default function Signin(props) {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [loginStatus,setLoginStatus] = useState("");
