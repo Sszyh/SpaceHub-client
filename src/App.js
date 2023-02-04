@@ -10,6 +10,8 @@ import Property from "./components/Property";
 import Details from "./components/Details";
 import User from "./components/User";
 import Host from "./components/Host";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -29,10 +31,16 @@ function App() {
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
             <Route path="/properties/:id" element={<Details />} />
+<<<<<<< HEAD
             <Route path="/user" element={<User />} />
             <Route path="/user/:id" element={<User />} />
             <Route path="/host/:id" element={<Host />} />
             <Route path="/" element={<Home />} />                    
+=======
+            <Route path="/" element={<Home />} />
+            <Route path="/users/signup" element={<SignUp />} />    
+            <Route path="/users/signin" element={<SignIn />} />          
+>>>>>>> e025e23cce6033bbe6a46e1a4a0f44e8ffd81060
           </Routes>
 
         <Footer />

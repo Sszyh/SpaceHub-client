@@ -23,7 +23,7 @@ function Home() {
     <div className='home'>
       <Header />
       <Banner />
-      <div>
+      <div className='formap'>
         <Card properties={properties} />
         <Map properties={properties} />
       </div>
