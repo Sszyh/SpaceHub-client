@@ -59,72 +59,73 @@ function Header({ placeholder }) {
 
   function handleHost(){
     navigate(`/host/1`)
+  }
   function logout() {
     removeCookies('user_obj', { path: '/' });
   }
+return (
+  <div className='header'>
+    <Link to='/'>
+      <img
+        className='header__icon'
+        src="https://i.pinimg.com/originals/3c/bf/be/3cbfbe148597341fa56f2f87ade90956.png"
+        alt=""
+      />
+    </Link>
 
-  return (
-    <div className='header'>
-      <Link to='/'>
-        <img
-          className='header__icon'
-          src="https://i.pinimg.com/originals/3c/bf/be/3cbfbe148597341fa56f2f87ade90956.png"
-          alt=""
-        />
-      </Link>
-
-      <div className='header__center'>
-        <input
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          placeholder={placeholder || "Start your search"}
-        />
-        <SearchIcon onClick={handleSearch} />
-      </div>
-
-      <div className='header__right'>
-        {cookies.user_obj ?
-          <p>Login as {cookies.user_obj.first_name}
-            <Button
-              variant='contained'
-              size="small"
-              color="secondary"
-              onClick={logout}>
-              logout
-            </Button>
-          </p> :
-          <Avatar >
-            <Link to={`/users/signin`} >
-              L
-            </Link>
-          </Avatar>
-        }
-      </div>
-      {searchTerm && (
-        <div className='search'>
-          <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handleSelect}
-          />
-          <div>
-            <h2>Number of Guests</h2>
-            <input
-              value={noofGuests}
-              type="number"
-              onChange={e => setNoofGuests(e.target.value)}
-              min={1}
-            />
-          </div>
-          <div className='flex'>
-            <Button onClick={resetInput}>Cancel</Button>
-            <Button onClick={handleClick}>Search SpaceHub</Button>
-          </div>
-
-        </div>
-      )}
-
+    <div className='header__center'>
+      <input
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        placeholder={placeholder || "Start your search"}
+      />
+      <SearchIcon onClick={handleSearch} />
     </div>
-  );
+
+    <div className='header__right'>
+      {cookies.user_obj ?
+        <p>Login as {cookies.user_obj.first_name}
+          <Button
+            variant='contained'
+            size="small"
+            color="secondary"
+            onClick={logout}>
+            logout
+          </Button>
+        </p> :
+        <Avatar >
+          <Link to={`/users/signin`} >
+            L
+          </Link>
+        </Avatar>
+      }
+    </div>
+    {searchTerm && (
+      <div className='search'>
+        <DateRangePicker
+          ranges={[selectionRange]}
+          onChange={handleSelect}
+        />
+        <div>
+          <h2>Number of Guests</h2>
+          <input
+            value={noofGuests}
+            type="number"
+            onChange={e => setNoofGuests(e.target.value)}
+            min={1}
+          />
+        </div>
+        <div className='flex'>
+          <Button onClick={resetInput}>Cancel</Button>
+          <Button onClick={handleClick}>Search SpaceHub</Button>
+        </div>
+
+      </div>
+    )}
+
+  </div>
+);
+ 
 };
-}
+
 export default Header;

@@ -38,12 +38,12 @@ export default function User() {
     })
     return (
         <>
-        <Header />
-        
-        <div>
-            {user[0] && <h2>My booking history</h2>}
-            {bookingList}
-        </div>
+            <Header />
+            
+            <div>
+                {user[0] && <h2>My booking history</h2>}
+                {bookingList}
+            </div>
         </>
     );
 }
