@@ -126,5 +126,5 @@ function Header({ placeholder }) {
     </div>
   );
 };
-
+}
 export default Header;
