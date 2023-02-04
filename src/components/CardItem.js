@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 function CardItem(props) {
-  console.log(props.ifHost)
+  // console.log(props.ifHost)
   return (
     <Card
       className='card'

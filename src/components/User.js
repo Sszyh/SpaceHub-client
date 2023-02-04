@@ -15,7 +15,7 @@ export default function User() {
         });
     }, [params.id]);
     // console.log(user)
-    const bookingList = user.map((item)=>{
+    const bookingList = user.map((item, index)=>{
         const total=item.price_for_stay;
         const formattedStartDate = format(new Date(item.check_in_date),"dd MMMM yyyy");
         const formattedEndDate = format(new Date(item.check_out_date),"dd MMMM yyyy");
@@ -31,6 +31,7 @@ export default function User() {
                 rating={myRating}
                 desc_long={item.desc_long}
                 city={dateDisplay}
+                key={index}
             />
 
         )

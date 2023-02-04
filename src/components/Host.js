@@ -22,13 +22,13 @@ export default function Host() {
     },[params.id]);
 
     console.log(host)
-    const cards = host.map((card) => {
+    const cards = host.map((card,index) => {
         let ifHost=0;
         if(card.userType==="host"){
             ifHost=1
         }
         return (
-          <Grid item xs={12} sm={6} md={4} key={card.id}>
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <CardItem
               src={card.image_url}
               title={card.title}
