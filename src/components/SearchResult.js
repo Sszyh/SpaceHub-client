@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/SearchResult.css'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import StarIcon from '@mui/icons-material/StarBorder';
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// import StarIcon from '@mui/icons-material/StarBorder';
 import {useParams} from "react-router-dom" ;
 import { Button } from '@mui/material';
 import SearchList from './SearchList';
@@ -34,6 +34,7 @@ export default function SearchResult() {
 
     const formattedStartDate = format(new Date(startDate),"dd MMMM");
     const formattedEndDate = format(new Date(endDate),"dd MMMM");
+
     return(
       <>
         <Header placeholder={`${term} | ${total_guests} guests | ${totalDays} days`}/>

@@ -1,8 +1,11 @@
 .search {
   position: absolute;
-  top: 35px;
+  top: 60px;
+  padding: 20px;
   left: 25%;
-  width: 100vw;
+  right: 25%;
+  width: 559px;
+  background-color: white;
 }
 
 .search > h2 {
@@ -14,11 +17,12 @@
   background-color: white;
   position: absolute;
   left: 0;
-  top: 360px;
+  top: 30px;
 }
 
 .search > input {
-  width: 539px;
+  width: 559px;
+  width: 100%;
   padding: 20px;
   position: absolute;
   left: 0;
