@@ -21,7 +21,7 @@ export default function Host() {
         })
     },[params.id]);
 
-    console.log(host)
+    console.log('all properties for host',host)
     const cards = host.map((card,index) => {
         let ifHost=0;
         if(card.userType==="host"){
@@ -36,6 +36,7 @@ export default function Host() {
               description={card.desc_short}
               id={card.id}
               ifHost={ifHost}
+              property_id={card.property_id}
             />
           </Grid>
         );
