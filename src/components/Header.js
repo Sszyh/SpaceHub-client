@@ -99,6 +99,7 @@ return (
           </Link>
         </Avatar>
       }
+      <button onClick={handleHost}>HOST</button>
     </div>
     {searchTerm && (
       <div className='search'>

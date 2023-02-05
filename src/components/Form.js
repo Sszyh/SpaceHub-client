@@ -13,7 +13,8 @@ export default function Form() {
     street:"",
     city:"",
     price:"",
-    desc:""
+    desc_short:"",
+    user_id:1
   })
 
   function submit(e){
@@ -31,8 +32,7 @@ export default function Form() {
 
     Axios.post(url, data)
     .then(res=>{
-      console.log('-----------------data---------',res.data.data)
-      // setData(res.data)      
+      console.log('-----------------data---------',res.data)
     })
   }
 
@@ -101,10 +101,10 @@ export default function Form() {
         />
 
         <TextField
-          id="desc"
+          id="desc_short"
           label="Description"  
           onChange={(e)=>{handle(e)}}
-          value={data.desc}        
+          value={data.desc_short}        
         />
           <button>Submit</button>
         </form>

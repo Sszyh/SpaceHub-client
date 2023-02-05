@@ -33,7 +33,7 @@ export default function Host() {
               src={card.image_url}
               title={card.title}
               price={card.price_per_day}
-              description={card.desc_long}
+              description={card.desc_short}
               id={card.id}
               ifHost={ifHost}
             />
