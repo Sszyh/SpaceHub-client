@@ -54,7 +54,7 @@ const BookingForm = (props) => {
       property_id: propertyId,
       check_in_date: startDate,
       check_out_date: endDate,
-      price_per_day: pricePerDay,
+      price_per_day: cleanPrice,
       price_for_stay: priceForStay
 
     }).then((res) => {
