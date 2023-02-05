@@ -30,7 +30,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} /> 
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
-            <Route path="/properties/:id" element={<Details />} />
+            <Route path="/properties/:id" element={<Property />} />
             <Route path="/user" element={<User />} />
             <Route path="/user/:id" element={<User />} />
             <Route path="/host/:id" element={<Host />} />

@@ -4,6 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/StarBorder';
 import '../styles/Property.css';
 import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
 
 function Property() {
 
@@ -24,6 +25,7 @@ function Property() {
 
   return (
     <div className='property'>
+      <Header />
       <img src={property[0]?.image_url} alt="" />
 
       <div className='property__info'>
@@ -48,7 +50,9 @@ function Property() {
         </div>
         <div className='property__infoBottom'>
           <div className='property__form'>
-            <BookingForm />
+            <BookingForm 
+            propertyId = {id}
+            />
           </div>
         </div>
       </div>
