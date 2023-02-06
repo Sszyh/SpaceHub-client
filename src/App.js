@@ -7,7 +7,6 @@ import Footer from './components/Footer'
 import SearchPage from './components/SearchPage'
 import SearchResult from "./components/SearchResult";
 import Property from "./components/Property";
-import Details from "./components/Details";
 import User from "./components/User";
 import Host from "./components/Host";
 import SignUp from "./components/SignUp";
