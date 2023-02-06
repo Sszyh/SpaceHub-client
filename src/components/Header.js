@@ -7,11 +7,13 @@ import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 
 import { Avatar } from '@mui/material/';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { useCookies } from "react-cookie";
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import Link from '@mui/material/Link';
 
 function Header({ placeholder }) {
 
@@ -22,8 +24,11 @@ function Header({ placeholder }) {
   const [uId,setUID] = useState("");
   const [cookies, setCookie, removeCookies] = useCookies();
 
+
   const navigate = useNavigate();
 
+  const user_id = cookies.user_obj.id;
+console.log(user_id,"cookiessssss");
   const handleSearch = () => {
     navigate(`/search/${searchTerm}`);
   };
@@ -84,19 +89,25 @@ return (
 
     <div className='header__right'>
       {cookies.user_obj ?
-        <p>Login as {cookies.user_obj.first_name}
-          <Button
+        <Avatar sx={{ bgcolor: deepOrange[500] }}>
+          {/* <Button
             variant='contained'
             size="small"
             color="secondary"
             onClick={logout}>
             logout
-          </Button>
-        </p> :
+          </Button> */}
+          <Link href={`/users/${user_id}`} underline="none">
+          {cookies.user_obj.first_name}
+      </Link>
+        </Avatar> :
         <Avatar >
-          <Link to={`/users/signin`} >
+          {/* <Link to={`/users/signin`} >
             L
-          </Link>
+          </Link> */}
+         <Link href="/users/signin" underline="none">
+        L
+      </Link>
         </Avatar>
       }
     </div>
