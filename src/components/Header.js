@@ -1,10 +1,12 @@
 import React from 'react';
 import '../styles/Header.css';
+import '../styles/Banner.css';
 import '../styles/Search.css'
 import { Button } from '@mui/material'
-import { DateRangePicker } from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
+import Search from './Search'
+// import { DateRangePicker } from 'react-date-range'
+// import 'react-date-range/dist/styles.css' // main style file
+// import 'react-date-range/dist/theme/default.css' // theme css file
 
 import { Avatar } from '@mui/material/';
 import { Link } from 'react-router-dom';
@@ -85,6 +87,9 @@ function Header({ placeholder }) {
           placeholder={placeholder || "Start your search"}
         />
         <SearchIcon onClick={handleSearch} />
+        
+          {/* Date Picker */}
+          {searchTerm && <Search />}
       </div>
 
       {/* Login */}
@@ -106,35 +111,6 @@ function Header({ placeholder }) {
           </Avatar>
         }
       </div>
-      
-      {/* Select Date */}
-      {searchTerm && (
-        <div className='search'>
-          <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handleSelect}
-          />
-
-          {/* Select Number of Guests */}
-          <div>
-            <h2>Number of Guests</h2>
-            <input
-              value={noofGuests}
-              type="number"
-              onChange={e => setNoofGuests(e.target.value)}
-              min={1}
-            />
-          </div>
-
-          {/* Cancel/Search Buttons */}
-          <div>
-            <Button onClick={resetInput}>Cancel</Button>
-            <Button onClick={handleClick}>Search SpaceHub</Button>
-          </div>
-
-        </div>
-      )}
-
     </div>
   );
 
