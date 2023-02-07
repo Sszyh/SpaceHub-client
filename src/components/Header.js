@@ -1,17 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import '../styles/Header.css';
 import '../styles/Banner.css';
 import '../styles/Search.css'
 import { Button } from '@mui/material'
 import Search from './Search'
-import { DateRangePicker } from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
-
 import { Avatar } from '@mui/material/';
 // import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { useCookies } from "react-cookie";
 import { deepOrange, deepPurple } from '@mui/material/colors';

@@ -1,15 +1,43 @@
 import React, { useState, useEffect, moment } from "react";
+import { useNavigate } from "react-router-dom";
 import '../styles/BookingForm.css';
+import { Button } from '@mui/material'
+import PeopleIcon from '@mui/icons-material/People';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import Alert from '@mui/material/Alert';
 
+import { DateRangePicker } from 'react-date-range'
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css' // theme css file
+
 const BookingForm = (props) => {
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const [noofGuests, setNoofGuests] = useState(1);
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  }
+  const navigate = useNavigate();
+
+  function handleSelect(ranges) {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  }
+
+  function handleClick() {
+    const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
+    navigate(`/search?days=${totalDays}`);
+  }
+
   const cookies = useCookies();
   const [guestCount, setGuestCount] = useState(1);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [currentProperty, setCurrentProperty] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
@@ -73,8 +101,11 @@ const BookingForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form
+      className="booking__form"
+      onSubmit={handleSubmit}>
+
+      {/* <div>
         <label htmlFor="guest-count">Guest Count:</label>
         <input
           type="number"
@@ -101,20 +132,33 @@ const BookingForm = (props) => {
           value={endDate}
           onChange={(event) => setEndDate(event.target.value)}
         />
-      </div>
+      </div> */}
 
 
-      {/* <DateRangePicker
-        onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
-        startDate={dates.startDate}
-        endDate={dates.endDate}
+      <DateRangePicker
+        // onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
+        ranges={[selectionRange]}
+        onChange={handleSelect}
+        startDate={startDate}
+        endDate={endDate}
         minDate={new Date()}
-      /> */}
+      />
+      
+      <h2>
+        Number of Guests <PeopleIcon />
+      </h2>
+      <input
+        min={1}
+        value={noofGuests}
+        onChange={e => setNoofGuests(e.target.value)}
+        type="number"
+      />
 
       <button type="submit">Book Now!</button>
       { showPopup && 
       <Alert severity="success">Your order has been placed successfully!</Alert>
       }
+
     </form>
   );
 };
