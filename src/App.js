@@ -7,7 +7,6 @@ import Footer from './components/Footer'
 import SearchPage from './components/SearchPage'
 import SearchResult from "./components/SearchResult";
 import Property from "./components/Property";
-import Details from "./components/Details";
 import User from "./components/User";
 import Host from "./components/Host";
 import SignUp from "./components/SignUp";
@@ -30,7 +29,7 @@ function App() {
             {/* <Route path="/search" element={<SearchPage />} />  */}
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
-            <Route path="/properties/:id" element={<Details />} />
+            <Route path="/properties/:id" element={<Property />} />
             <Route path="/user" element={<User />} />
             <Route path="/user/:id" element={<User />} />
             <Route path="/host/:id" element={<Host />} />
