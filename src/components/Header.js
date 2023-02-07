@@ -99,22 +99,57 @@ function Header({ placeholder }) {
       {/* Login */}
       <div className='header__right'>
         {cookies.user_obj ?
-          <p>Login as {cookies.user_obj.first_name}
+          <Fragment>
+            <Avatar sx={{ bgcolor: deepOrange[500] }}>
+              {/* <Button
+            variant='contained'
+            size="small"
+            color="secondary"
+            onClick={logout}>
+            logout
+          </Button> */}
+              <Link href={`/user/${cookies.user_obj.id}`} underline="none">
+                {cookies.user_obj.first_name}
+              </Link>
+            </Avatar>
             <Button
-              variant='contained'
+              variant="text"
               size="small"
               color="secondary"
               onClick={logout}>
               logout
             </Button>
-          </p> :
+          </Fragment>
+          :
           <Avatar >
-            <Link to={`/users/signin`} >
+            <Link href="/users/signin" underline="none">
               L
             </Link>
           </Avatar>
         }
       </div>
+      {searchTerm && (
+        <div className='search'>
+          <DateRangePicker
+            ranges={[selectionRange]}
+            onChange={handleSelect}
+          />
+          <div>
+            <h2>Number of Guests</h2>
+            <input
+              value={noofGuests}
+              type="number"
+              onChange={e => setNoofGuests(e.target.value)}
+              min={1}
+            />
+          </div>
+          <div className='flex'>
+            <Button onClick={resetInput}>Cancel</Button>
+            <Button onClick={handleClick}>Search SpaceHub</Button>
+          </div>
+
+        </div>
+      )}
     </div>
   );
 
