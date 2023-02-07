@@ -1,26 +1,31 @@
 .property {
   display: flex;
+  flex-direction: column;
   position: relative;
   margin: 20px;
   padding: 20px;
   border-bottom: 1px solid lightgrey;
 }
 
-.property > img {
-  flex-direction: column;
+.property__card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+
+.property__card > img {
   border-radius: 10px;
   overflow: hidden;
 }
 
 .property__info {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-left: 20px;
+  padding: 20px;
 }
 
 .property__info > h3 {
-  font-weight: 300;
+  font-weight: 600;
   margin-top: 10px;
 }
 
@@ -30,18 +35,9 @@
   color: gray;
 }
 
-.property__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  right: 40px;
-  width: 30%;
-}
-
 .property__icons {
   position: relative;
   display: flex;
-  /* flex-direction: column; */
 }
 
 .property__stars {

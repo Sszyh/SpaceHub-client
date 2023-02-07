@@ -1,13 +1,41 @@
 import React, { useState, useEffect, moment } from "react";
+import { useNavigate } from "react-router-dom";
 import '../styles/BookingForm.css';
+import { Button } from '@mui/material'
+import PeopleIcon from '@mui/icons-material/People';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
+import { DateRangePicker } from 'react-date-range'
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css' // theme css file
+
 const BookingForm = (props) => {
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const [noofGuests, setNoofGuests] = useState(1);
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  }
+  const navigate = useNavigate();
+
+  function handleSelect(ranges) {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  }
+
+  function handleClick() {
+    const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
+    navigate(`/search?days=${totalDays}`);
+  }
+
   const cookies = useCookies();
   const [guestCount, setGuestCount] = useState(1);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [currentProperty, setCurrentProperty] = useState("");
 
   // Caculate days
@@ -16,7 +44,7 @@ const BookingForm = (props) => {
   const Difference_In_Time = date2.getTime() - date1.getTime();
   const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-  const propertyId  = parseInt(props.propertyId);
+  const propertyId = parseInt(props.propertyId);
   const user_id = cookies[0].user_obj.id;
   const pricePerDay = currentProperty.price_per_day;
 
@@ -40,13 +68,13 @@ const BookingForm = (props) => {
     const cleanPrice = parseFloat(pricePerDay.replace("$", ""));
     const priceForStay = cleanPrice * Difference_In_Days;
 
-    console.log(user_id,"user_id");
-    console.log(propertyId,"property_id");
-    console.log(startDate,"start_day");
-    console.log(endDate,"enddate");
-    console.log(cleanPrice,"clean price per day");
-    console.log(Difference_In_Days,"staying days");
-    console.log(priceForStay,"forstay");
+    console.log(user_id, "user_id");
+    console.log(propertyId, "property_id");
+    console.log(startDate, "start_day");
+    console.log(endDate, "enddate");
+    console.log(cleanPrice, "clean price per day");
+    console.log(Difference_In_Days, "staying days");
+    console.log(priceForStay, "forstay");
 
     axios.post("http://localhost:8000/bookings/", {
 
@@ -58,18 +86,21 @@ const BookingForm = (props) => {
       price_for_stay: priceForStay
 
     }).then((res) => {
-      if(res.data) {
+      if (res.data) {
         console.log("seccuss")
       }
       console.log(res, "ressss")
     }).catch((err) => {
-      console.log(err,"Err")
+      console.log(err, "Err")
     })
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form
+      className="booking__form"
+      onSubmit={handleSubmit}>
+
+      {/* <div>
         <label htmlFor="guest-count">Guest Count:</label>
         <input
           type="number"
@@ -96,16 +127,26 @@ const BookingForm = (props) => {
           value={endDate}
           onChange={(event) => setEndDate(event.target.value)}
         />
-      </div>
+      </div> */}
 
-      {/* <DateRangePicker
-        onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
-        startDate={dates.startDate}
-        endDate={dates.endDate}
+      <DateRangePicker
+        // onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
+        ranges={[selectionRange]}
+        onChange={handleSelect}
+        startDate={startDate}
+        endDate={endDate}
         minDate={new Date()}
-      /> */}
-
-      <button type="submit">Book Now!</button>
+      />
+      <h2>
+        Number of Guests <PeopleIcon />
+      </h2>
+      <input
+        min={1}
+        value={noofGuests}
+        onChange={e => setNoofGuests(e.target.value)}
+        type="number"
+      />
+      <Button type="submit">Book Now!</Button>
     </form>
   );
 };

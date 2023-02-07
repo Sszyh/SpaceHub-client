@@ -26,7 +26,7 @@ function App() {
       <Router>
         
           <Routes>
-            {/* <Route path="/search" element={<SearchPage />} />  */}
+            <Route path="/search" element={<SearchPage />} /> 
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
             <Route path="/properties/:id" element={<Property />} />
