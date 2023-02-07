@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from './Header';
 import SearchItem from './SearchItem';
 import {format} from "date-fns";
-import User from './User';
+import HostPropertyHistory from './HostPropertyHistory';
 import CardItem from './CardItem'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -44,7 +44,7 @@ export default function Host() {
 
     return (
       <>
-        <User />
+        <HostPropertyHistory />
         <>
             <h2>My own properties</h2>
             <Button>Add a new property</Button>

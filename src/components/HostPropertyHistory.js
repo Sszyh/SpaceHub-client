@@ -4,23 +4,23 @@ import Header from './Header';
 import SearchItem from './SearchItem';
 import {format} from "date-fns";
 
-export default function User() {
-    const [user, setUser] = useState([]);
+export default function HostPropertyHistory() {
+    const [host, setHost] = useState([]);
     const params = useParams();
     useEffect(() => {
-        fetch(`http://localhost:8000/user/${params.id}`)
+        fetch(`http://localhost:8000/user/host/${params.id}`)
         .then((res) => res.json())
         .then((result) => {
-            setUser(result.user);
+            setHost(result.host);
         });
     }, [params.id]);
-    console.log(user)
-    const bookingList = user.map((item, index)=>{
+    console.log(host)
+    const bookingList = host.map((item, index)=>{
         const total=item.price_for_stay;
         const formattedStartDate = format(new Date(item.check_in_date),"dd MMMM yyyy");
         const formattedEndDate = format(new Date(item.check_out_date),"dd MMMM yyyy");
         const dateDisplay = formattedStartDate + " ->" + formattedEndDate
-        const myRating = item.rating + " <- My rating"
+        const rating = item.rating+" <- "+item.first_name + " " + item.last_name
 
         return(
             <SearchItem
@@ -28,11 +28,12 @@ export default function User() {
                 price_per_day={item.price_per_day}
                 src={item.image_url}
                 title={item.title}
-                rating={myRating}
+                rating={rating}
                 desc_long={item.desc_long}
                 city={dateDisplay}
                 key={index}
             />
+
         )
     })
     return (
@@ -40,7 +41,7 @@ export default function User() {
             <Header />
             
             <div>
-                {user[0] && <h2>My booking history</h2>}
+                {host[0] && <h2>Booking history for my properties</h2>}
                 {bookingList}
             </div>
         </>
