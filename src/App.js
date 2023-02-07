@@ -26,7 +26,7 @@ function App() {
       <Router>
         
           <Routes>
-            <Route path="/search" element={<SearchPage />} /> 
+            {/* <Route path="/search" element={<SearchPage />} />  */}
             <Route path="/search/:term" element={<SearchResult />} />
             <Route path="/property/" element={<Property />}/>
             <Route path="/properties/:id" element={<Property />} />
@@ -34,7 +34,6 @@ function App() {
             <Route path="/user/:id" element={<User />} />
             <Route path="/host/:id" element={<Host />} />
             <Route path="/" element={<Home />} />                    
-            <Route path="/" element={<Home />} />
             <Route path="/users/signup" element={<SignUp />} />    
             <Route path="/users/signin" element={<SignIn />} />          
           </Routes>
