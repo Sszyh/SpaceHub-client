@@ -5,6 +5,8 @@ import { Button } from '@mui/material'
 import PeopleIcon from '@mui/icons-material/People';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import Popup from 'reactjs-popup';
+import Alert from '@mui/material/Alert';
 
 import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
@@ -37,6 +39,7 @@ const BookingForm = (props) => {
   const cookies = useCookies();
   const [guestCount, setGuestCount] = useState(1);
   const [currentProperty, setCurrentProperty] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   // Caculate days
   const date1 = new Date(startDate);
@@ -47,6 +50,7 @@ const BookingForm = (props) => {
   const propertyId = parseInt(props.propertyId);
   const user_id = cookies[0].user_obj.id;
   const pricePerDay = currentProperty.price_per_day;
+
 
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${propertyId}`)
@@ -87,7 +91,8 @@ const BookingForm = (props) => {
 
     }).then((res) => {
       if (res.data) {
-        console.log("seccuss")
+        console.log("seccuss");
+        setShowPopup(true);
       }
       console.log(res, "ressss")
     }).catch((err) => {
@@ -129,6 +134,7 @@ const BookingForm = (props) => {
         />
       </div> */}
 
+
       <DateRangePicker
         // onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
         ranges={[selectionRange]}
@@ -137,6 +143,7 @@ const BookingForm = (props) => {
         endDate={endDate}
         minDate={new Date()}
       />
+      
       <h2>
         Number of Guests <PeopleIcon />
       </h2>
@@ -146,7 +153,12 @@ const BookingForm = (props) => {
         onChange={e => setNoofGuests(e.target.value)}
         type="number"
       />
-      <Button type="submit">Book Now!</Button>
+
+      <button type="submit">Book Now!</button>
+      { showPopup && 
+      <Alert severity="success">Your order has been placed successfully!</Alert>
+      }
+
     </form>
   );
 };
