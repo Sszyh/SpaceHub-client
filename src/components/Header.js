@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useCookies } from "react-cookie";
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Link from '@mui/material/Link';
+import PeopleIcon from '@mui/icons-material/People';
 
 function Header({ placeholder }) {
 
@@ -91,9 +92,7 @@ function Header({ placeholder }) {
           placeholder={placeholder || "Start your search"}
         />
         <SearchIcon onClick={handleSearch} />
-        
-          {/* Date Picker */}
-          {searchTerm && <Search />}
+ 
       </div>
 
       {/* Login */}
@@ -134,20 +133,15 @@ function Header({ placeholder }) {
             ranges={[selectionRange]}
             onChange={handleSelect}
           />
-          <div>
-            <h2>Number of Guests</h2>
-            <input
-              value={noofGuests}
-              type="number"
-              onChange={e => setNoofGuests(e.target.value)}
-              min={1}
-            />
-          </div>
-          <div className='flex'>
-            <Button onClick={resetInput}>Cancel</Button>
-            <Button onClick={handleClick}>Search SpaceHub</Button>
-          </div>
-
+          
+          <h2>Number of Guests <PeopleIcon /> </h2>
+          <input
+            value={noofGuests}
+            type="number"
+            onChange={e => setNoofGuests(e.target.value)}
+            min={1}
+          />
+          <Button className='search__button' onClick={handleClick}>Search SpaceHub</Button>
         </div>
       )}
     </div>
