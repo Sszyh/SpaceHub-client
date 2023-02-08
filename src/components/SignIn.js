@@ -50,9 +50,10 @@ export default function Signin(props) {
       console.log(response,"resss")
       if(response.data){
         console.log("3333333");
+        setCookies('user_obj',response.data.user, { path: '/' });
         navigate('/');
         console.log("444444");
-        setCookies('user_obj',response.data.user, { path: '/' });
+        
         console.log("coooo",cookies);
       } else {
         setLoginStatus(response.data.user.email);
