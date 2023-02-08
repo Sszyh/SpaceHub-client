@@ -1,17 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import '../styles/Header.css';
 import '../styles/Banner.css';
 import '../styles/Search.css'
 import { Button } from '@mui/material'
 import Search from './Search'
-import { DateRangePicker } from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
+// import { DateRangePicker } from 'react-date-range'
+// import 'react-date-range/dist/styles.css' // main style file
+// import 'react-date-range/dist/theme/default.css' // theme css file
 
 import { Avatar } from '@mui/material/';
-// import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { useCookies } from "react-cookie";
 import { deepOrange, deepPurple } from '@mui/material/colors';
@@ -30,7 +28,8 @@ function Header({ placeholder }) {
 
   const navigate = useNavigate();
 
-  console.log(cookies, "cookiessssss");
+  // console.log(cookies, "cookiessssss");
+
   const handleSearch = () => {
     navigate(`/search/${searchTerm}`);
   };
@@ -67,12 +66,12 @@ function Header({ placeholder }) {
   function handleHost() {
     navigate(`/host/1`)
   }
+
   function logout() {
     removeCookies('user_obj', { path: '/' });
   }
 
   return (
-
 
     <div className='header'>
       <Link to='/'>
@@ -92,7 +91,9 @@ function Header({ placeholder }) {
           placeholder={placeholder || "Start your search"}
         />
         <SearchIcon onClick={handleSearch} />
- 
+
+        {/* Date Picker */}
+        {searchTerm && <Search />}
       </div>
 
       {/* Login */}
@@ -100,16 +101,19 @@ function Header({ placeholder }) {
         {cookies.user_obj ?
           <Fragment>
             <Avatar sx={{ bgcolor: deepOrange[500] }}>
+
               {/* <Button
-            variant='contained'
-            size="small"
-            color="secondary"
-            onClick={logout}>
-            logout
-          </Button> */}
+                variant='contained'
+                size="small"
+                color="secondary"
+                onClick={logout}>
+                logout
+                  </Button> */}
+
               <Link href={`/${cookies.user_obj.user_type}/${cookies.user_obj.id}`} underline="none">
                 {cookies.user_obj.first_name}
               </Link>
+
             </Avatar>
             <Button
               variant="text"
@@ -127,23 +131,6 @@ function Header({ placeholder }) {
           </Avatar>
         }
       </div>
-      {searchTerm && (
-        <div className='search'>
-          <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handleSelect}
-          />
-          
-          <h2>Number of Guests <PeopleIcon /> </h2>
-          <input
-            value={noofGuests}
-            type="number"
-            onChange={e => setNoofGuests(e.target.value)}
-            min={1}
-          />
-          <Button className='search__button' onClick={handleClick}>Search SpaceHub</Button>
-        </div>
-      )}
     </div>
   );
 
