@@ -1,5 +1,5 @@
 import React, { useState, useEffect, moment } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import '../styles/BookingForm.css';
 import { Button } from '@mui/material'
 import PeopleIcon from '@mui/icons-material/People';
@@ -14,16 +14,24 @@ import 'react-date-range/dist/theme/default.css' // theme css file
 
 const BookingForm = (props) => {
 
+  const cookies = useCookies();
+
+  const [guestCount, setGuestCount] = useState(1);
+  const [noofGuests, setNoofGuests] = useState(1);
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const [noofGuests, setNoofGuests] = useState(1);
+  const [currentProperty, setCurrentProperty] = useState("");
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   }
+
   const navigate = useNavigate();
 
   function handleSelect(ranges) {
@@ -36,10 +44,8 @@ const BookingForm = (props) => {
     navigate(`/search?days=${totalDays}`);
   }
 
-  const cookies = useCookies();
-  const [guestCount, setGuestCount] = useState(1);
-  const [currentProperty, setCurrentProperty] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  //console.log("user_obj:", user_obj);
+  console.log("cookies:", cookies);
 
   // Caculate days
   const date1 = new Date(startDate);
@@ -101,6 +107,7 @@ const BookingForm = (props) => {
   };
 
   return (
+
     <form
       className="booking__form"
       onSubmit={handleSubmit}>
@@ -135,6 +142,8 @@ const BookingForm = (props) => {
       </div> */}
 
 
+      {/* Select Date */}
+
       <DateRangePicker
         // onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
         ranges={[selectionRange]}
@@ -143,7 +152,7 @@ const BookingForm = (props) => {
         endDate={endDate}
         minDate={new Date()}
       />
-      
+
       <h2>
         Number of Guests <PeopleIcon />
       </h2>
@@ -154,7 +163,8 @@ const BookingForm = (props) => {
         type="number"
       />
 
-      <button type="submit">Book Now!</button>
+      <Button type="submit">Book Now!</Button>
+
       { showPopup && 
       <Alert severity="success">Your order has been placed successfully!</Alert>
       }

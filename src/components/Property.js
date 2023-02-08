@@ -11,8 +11,6 @@ function Property() {
   const [property, setProperty] = useState([]);
   const { id } = useParams();
 
-  // console.log("property:", property)
-
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${id}`)
       .then((res) => res.json())
@@ -38,31 +36,29 @@ function Property() {
             <h3>{property[0]?.title}</h3>
             <p>{property[0]?.street}</p>
             <p>{property[0]?.city}, {property[0]?.province}</p>
-            <br/>
+            <br />
             <div>
-              <h5>{property[0]?.price_per_day} /day</h5>
-              <br/>
+              <h5>{property[0]?.price_per_day}/day</h5>
+              <br />
               <p>{property[0]?.desc_long}</p>
             </div>
 
-            <div className='property_icons'>
+            <div className='property__icons'>
               <FavoriteBorderIcon className='property__stars' />
               <div className='property__stars'>
                 <StarIcon className='property__star' />
-                <p>
-                  <strong>{property[0]?.average_rating}</strong>
-                </p>
+                <p><strong>{property[0]?.average_rating}</strong></p>
               </div>
             </div>
 
-            <div className='property__form'>
+            <div>
               <BookingForm
+                className='booking__form'
                 propertyId={id}
               />
+
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
