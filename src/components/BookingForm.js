@@ -107,7 +107,8 @@ const BookingForm = (props) => {
   };
 
   return (
-    <form 
+
+    <form
       className="booking__form"
       onSubmit={handleSubmit}>
 
@@ -140,7 +141,9 @@ const BookingForm = (props) => {
         />
       </div> */}
 
+
       {/* Select Date */}
+
       <DateRangePicker
         // onChange={({ startDate, endDate }) => setDates({ startDate, endDate })}
         ranges={[selectionRange]}
@@ -161,9 +164,11 @@ const BookingForm = (props) => {
       />
 
       <Button type="submit">Book Now!</Button>
+
       { showPopup && 
       <Alert severity="success">Your order has been placed successfully!</Alert>
       }
+
     </form>
   );
 };

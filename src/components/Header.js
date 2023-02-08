@@ -4,10 +4,6 @@ import '../styles/Banner.css';
 import '../styles/Search.css'
 import { Button } from '@mui/material'
 import Search from './Search'
-// import { DateRangePicker } from 'react-date-range'
-// import 'react-date-range/dist/styles.css' // main style file
-// import 'react-date-range/dist/theme/default.css' // theme css file
-
 import { Avatar } from '@mui/material/';
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';

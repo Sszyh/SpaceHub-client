@@ -11,8 +11,6 @@ function Property() {
   const [property, setProperty] = useState([]);
   const { id } = useParams();
 
-  // console.log("property:", property);
-
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${id}`)
       .then((res) => res.json())
@@ -35,7 +33,6 @@ function Property() {
           <img src={property[0]?.image_url} alt="" />
 
           <div className='property__info'>
-
             <h3>{property[0]?.title}</h3>
             <p>{property[0]?.street}</p>
             <p>{property[0]?.city}, {property[0]?.province}</p>

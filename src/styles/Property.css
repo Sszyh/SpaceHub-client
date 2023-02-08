@@ -36,14 +36,6 @@
   color: gray;
 }
 
-.property__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  right: 40px;
-  width: 30%;
-}
-
 .property__icons {
   position: relative;
   display: flex;
