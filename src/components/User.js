@@ -4,6 +4,7 @@ import Header from './Header';
 import SearchItem from './SearchItem';
 import {format} from "date-fns";
 
+
 export default function User() {
     const [user, setUser] = useState([]);
     const params = useParams();
@@ -20,19 +21,25 @@ export default function User() {
         const formattedStartDate = format(new Date(item.check_in_date),"dd MMMM yyyy");
         const formattedEndDate = format(new Date(item.check_out_date),"dd MMMM yyyy");
         const dateDisplay = formattedStartDate + " ->" + formattedEndDate
-        const myRating = item.rating + " <- My rating"
+        
 
         return(
-            <SearchItem
-                total_price={total.slice(1)}
-                price_per_day={item.price_per_day}
-                src={item.image_url}
-                title={item.title}
-                rating={myRating}
-                desc_long={item.desc_long}
-                city={dateDisplay}
-                key={index}
-            />
+            <>
+                
+                <SearchItem
+                    total_price={total.slice(1)}
+                    price_per_day={item.price_per_day}
+                    src={item.image_url}
+                    title={item.title}
+                    desc_long={item.desc_long}
+                    city={dateDisplay}
+                    rating={item.rating}
+                    property_id={item.property_id}
+                    key={index}
+                />
+                
+            </>
+            
         )
     })
     return (

@@ -1,8 +1,39 @@
 import React from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/StarBorder';
+import { Button } from '@mui/material'
+import Axios from 'axios';
+import { useState } from "react";
+
 
 export default function SearchItem(props){
+    const [data,setData]=useState({
+        rating:"",
+        property_id:props.property_id
+    });
+    const [showForm,setShowForm]=useState(false);
+
+    const handleEditForm=()=>{
+        setShowForm(!showForm);
+      }
+      
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        console.log(data)
+        Axios.put('http://localhost:8000/bookings',data)
+        .then(
+            res=>{
+                setData(res.data)
+            }
+        )
+    }
+
+    function handle(e){
+        const newdata = {...data}
+        newdata[e.target.id]=e.target.value
+        setData(newdata)
+        console.log(data)
+      }
 
     return(
 
@@ -28,6 +59,15 @@ export default function SearchItem(props){
                         <h2>{props.price_per_day}</h2>
                         <p>${props.total_price}</p>
                     </div>
+                    <button onClick={handleEditForm}>Add Rating</button>
+                    {
+                        showForm && (
+                            <form onSubmit={(e)=>handleSubmit(e)}>
+                            <input type="text" id="rating" placeholder="5.0" value={data.rating} onChange={handle}/>
+                            <button type="submit">Submit</button>
+                            </form>
+                            )
+                    }
                 </div>
             </div>
         </div>
