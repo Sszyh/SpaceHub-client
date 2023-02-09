@@ -26,7 +26,7 @@ export default function SearchList(props){
                 price_per_day={item.price_per_day}
                 desc_long={item.desc_long}
                 total_price= {total_price}
-                
+                id={item.id}
             />
         )
     })

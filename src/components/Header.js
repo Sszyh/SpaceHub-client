@@ -67,6 +67,7 @@ function Header({ placeholder }) {
 
   function logout() {
     removeCookies('user_obj', { path: '/' });
+    navigate(`/`);
   }
 
   return (
