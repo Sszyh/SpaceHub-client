@@ -11,6 +11,8 @@ import { useCookies } from "react-cookie";
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Link from '@mui/material/Link';
 import PeopleIcon from '@mui/icons-material/People';
+import { DateRangePicker } from 'react-date-range'
+
 
 function Header({ placeholder }) {
 
@@ -88,8 +90,6 @@ function Header({ placeholder }) {
         />
         <SearchIcon onClick={handleSearch} />
 
-        {/* Date Picker */}
-        {searchTerm && <Search />}
       </div>
 
       {/* Login */}
@@ -127,6 +127,29 @@ function Header({ placeholder }) {
           </Avatar>
         }
       </div>
+
+      {searchTerm && (
+      <div className='search'>
+        <DateRangePicker
+          ranges={[selectionRange]}
+          onChange={handleSelect}
+        />
+      
+        <h2>Number of Guests</h2>
+        <input
+          value={noofGuests}
+          type="number"
+          onChange={e => setNoofGuests(e.target.value)}
+          min={1}
+        />
+        
+        
+        <Button className='search__button' onClick={resetInput}>Cancel</Button>
+        <Button className='search__button' onClick={handleClick}>Search SpaceHub</Button>
+       
+
+      </div>
+    )}
     </div>
   );
 
