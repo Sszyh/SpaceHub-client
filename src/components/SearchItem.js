@@ -1,14 +1,20 @@
 import React from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/StarBorder';
+import { useNavigate } from "react-router-dom";
 
-export default function SearchItem(props){
+export default function SearchItem(props) {
 
-    return(
+    const navigate = useNavigate();
 
-        <div className='searchResult'>
-            <img src={props.src} alt=""/>
-            <FavoriteBorderIcon className='searchResult__heart'/>
+    return (
+
+        <div
+            className='searchResult'
+            onClick={() => { navigate(`/properties/${props.id}`) }}
+        >
+            <img src={props.src} alt="" />
+            <FavoriteBorderIcon className='searchResult__heart' />
             <div className='searchResult__info'>
                 <div className='searchResult__infoTop'>
                     <p>{props.province}</p>
@@ -19,9 +25,9 @@ export default function SearchItem(props){
                 </div>
                 <div className='searchResult__infoBottom'>
                     <div className='searchResult__stars'>
-                      <StarIcon className='searchResult__star'/>
+                        <StarIcon className='searchResult__star' />
                         <p>
-                         <strong>{props.rating}</strong>
+                            <strong>{props.rating}</strong>
                         </p>
                     </div>
                     <div className='searchResult__price'>
