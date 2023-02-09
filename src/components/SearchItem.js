@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function SearchItem(props){
     const [data,setData]=useState({
-        rating:"",
+        rating:props.rating,
         booking_id:props.booking_id
     });
     const [showForm,setShowForm]=useState(false);
@@ -20,13 +20,14 @@ export default function SearchItem(props){
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(data)
-        Axios.put('http://localhost:8000/bookings',data)
-        .then(
-            res=>{
-                setData(res.data)
-            }
-        )
-        Axios.put('http://localhost:8000/bookings/avg',data)
+        Axios.all([
+            Axios.put('http://localhost:8000/bookings',data),
+            Axios.put('http://localhost:8000/bookings/avg')
+        ])
+        .then(Axios.spread((res)=>{
+            setData(res.data)
+            console.log('res',res.data)
+        }));
     }
 
     function handle(e){
@@ -53,7 +54,7 @@ export default function SearchItem(props){
                     <div className='searchResult__stars'>
                       <StarIcon className='searchResult__star'/>
                         <p>
-                         <strong>{props.rating}</strong>
+                         <strong>{data.rating}</strong>
                         </p>
                     </div>
                     <div className='searchResult__price'>
