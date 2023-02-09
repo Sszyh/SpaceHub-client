@@ -34,7 +34,7 @@ export default function User() {
                     desc_long={item.desc_long}
                     city={dateDisplay}
                     rating={item.rating}
-                    property_id={item.property_id}
+                    booking_id={item.id}
                     key={index}
                 />
                 

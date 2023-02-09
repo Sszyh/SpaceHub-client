@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function SearchItem(props){
     const [data,setData]=useState({
         rating:"",
-        property_id:props.property_id
+        booking_id:props.booking_id
     });
     const [showForm,setShowForm]=useState(false);
 
@@ -26,6 +26,7 @@ export default function SearchItem(props){
                 setData(res.data)
             }
         )
+        Axios.put('http://localhost:8000/bookings/avg',data)
     }
 
     function handle(e){
