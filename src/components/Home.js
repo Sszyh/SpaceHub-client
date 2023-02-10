@@ -32,7 +32,7 @@ function Home() {
       <Banner user={ user } />
       <div className='formap'>
         <Card properties={properties} />
-        <Map properties={properties} />
+        {/* <Map properties={properties} /> */}
       </div>
     </div>
 
