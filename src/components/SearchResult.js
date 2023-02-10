@@ -8,7 +8,7 @@ import SearchList from './SearchList';
 import { useLocation } from "react-router-dom";
 import {format} from "date-fns";
 import Header from './Header';
-
+import Map from './Map'
 
 export default function SearchResult() {
   const [search, setSearch] = useState([]);
@@ -60,7 +60,9 @@ export default function SearchResult() {
           </div>
 
           <SearchList properties = {search}/>
-
+          {search.length > 0 &&
+          <Map properties= {search} />
+          }
         </div>
       </>
     )

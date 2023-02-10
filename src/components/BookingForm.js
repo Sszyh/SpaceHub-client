@@ -27,7 +27,7 @@ const BookingForm = (props) => {
   const [currentProperty, setCurrentProperty] = useState("");
 
   const [showPopup, setShowPopup] = useState(false);
-  // const [bookedDate, setBookedDate] = useState([]);
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -35,7 +35,7 @@ const BookingForm = (props) => {
   }
 
   const navigate = useNavigate();
-  console.log(props.bookedDate,"bookeddate props")
+  console.log(props.bookedDate,"bookeddate props");
   function handleSelect(ranges) {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
@@ -45,9 +45,6 @@ const BookingForm = (props) => {
     const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
     navigate(`/search?days=${totalDays}`);
   }
-
-  //console.log("user_obj:", user_obj);
-  // console.log("cookies:", cookies);
 
   // Caculate days
   const date1 = new Date(startDate);
@@ -65,10 +62,7 @@ const BookingForm = (props) => {
       setBookedDate(oldArray => [...oldArray,date]);
     }
   }
-  // const add = addDays(new Date(),5)
-  // console.log("end date",add)
-  // console.log("test date function",checkDate(new Date(), add))
-
+  
 
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${propertyId}`)
