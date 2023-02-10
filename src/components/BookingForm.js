@@ -8,7 +8,9 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 import Alert from '@mui/material/Alert';
 
-import { DateRangePicker } from 'react-date-range'
+import { DateRangePicker } from 'react-date-range';
+import { addDays } from 'date-fns';//for date render
+
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 
@@ -25,7 +27,7 @@ const BookingForm = (props) => {
   const [currentProperty, setCurrentProperty] = useState("");
 
   const [showPopup, setShowPopup] = useState(false);
-
+  // const [bookedDate, setBookedDate] = useState([]);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -33,7 +35,7 @@ const BookingForm = (props) => {
   }
 
   const navigate = useNavigate();
-
+  console.log(props.bookedDate,"bookeddate props")
   function handleSelect(ranges) {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
@@ -45,7 +47,7 @@ const BookingForm = (props) => {
   }
 
   //console.log("user_obj:", user_obj);
-  console.log("cookies:", cookies);
+  // console.log("cookies:", cookies);
 
   // Caculate days
   const date1 = new Date(startDate);
@@ -56,6 +58,16 @@ const BookingForm = (props) => {
   const propertyId = parseInt(props.propertyId);
   const user_id = cookies[0].user_obj.id;
   const pricePerDay = currentProperty.price_per_day;
+
+  // check if date already been booked, return booked to component
+  const checkDate = (startDate,endDate) => {
+    for (let date = startDate; date < endDate; date = addDays((date),1)) {
+      setBookedDate(oldArray => [...oldArray,date]);
+    }
+  }
+  // const add = addDays(new Date(),5)
+  // console.log("end date",add)
+  // console.log("test date function",checkDate(new Date(), add))
 
 
   useEffect(() => {
@@ -150,7 +162,8 @@ const BookingForm = (props) => {
         onChange={handleSelect}
         startDate={startDate}
         endDate={endDate}
-        minDate={new Date()}
+        minDate={addDays(new Date(),-1)}
+        disabledDates={props.bookedDate}
       />
 
       <h2>
