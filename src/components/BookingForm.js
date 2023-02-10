@@ -170,7 +170,7 @@ const BookingForm = (props) => {
         onChange={handleSelect}
         startDate={startDate}
         endDate={endDate}
-        minDate={addDays(new Date(),-1)}
+        minDate={new Date()}
         disabledDates={allDates}
       />
 
