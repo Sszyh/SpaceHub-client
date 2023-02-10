@@ -1,61 +1,98 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import HostBookingHistory from './HostBookingHistory';
 import Header from './Header';
-import SearchItem from './SearchItem';
-import {format} from "date-fns";
-import HostPropertyHistory from './HostPropertyHistory';
-import CardItem from './CardItem'
+import HostPropCard from './HostPropCard';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Form from './Form';
 
-export default function Host() {
-    const[host,setHost] = useState([]);
-    const params = useParams();
-    useEffect(()=>{
-        fetch(`http://localhost:8000/host/${params.id}`)
-        .then((res)=>res.json())
-        .then((result)=>{
-            setHost(result.user);
-        })
-    },[params.id]);
+import '../styles/Host.css';
 
-    console.log('all properties for host',host)
-    const cards = host.map((card,index) => {
-        let ifHost=0;
-        if(card.userType==="host"){
-            ifHost=1
-        }
-        return (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <CardItem
-              src={card.image_url}
-              title={card.title}
-              price={card.price_per_day}
-              description={card.desc_short}
-              id={card.id}
-              ifHost={ifHost}
-              property_id={card.property_id}
-            />
-          </Grid>
-        );
-      });
+export default function Host() {
+
+  const [host, setHost] = useState([]);
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/host/${params.id}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setHost(result.user);
+      })
+  }, [params.id]);
+
+  // console.log("host:", host)
+
+  const cards = host.map((card, index) => {
+    let isHost = 0;
+    if (card.userType === "host") {
+      isHost = 1
+    }
+
+    // console.log("Host - card:", card);
 
     return (
-      <>
-        <HostPropertyHistory />
-        <>
-            <h2>My own properties</h2>
-            <Button>Add a new property</Button>
-            <Form/>
-        </>
-        
-        <Box sx={{ flexGrow: 1}}>
-            <Grid container spacing={4}>
-            {cards}
-            </Grid>
-        </Box>
-      </>
+
+      <Grid item xs={12} sm={6} md={4} key={index}>
+
+        {/* Replace CardItem with HostPropCard */}
+
+        <HostPropCard
+          src={card.image_url}
+          title={card.title}
+          price={card.price_per_day}
+          description={card.desc_short}
+          id={card.id}
+          isHost={isHost}
+          property_id={card.property_id}
+        />
+
+        {/* <CardItem
+          src={card.image_url}
+          title={card.title}
+          price={card.price_per_day}
+          description={card.desc_short}
+          id={card.id}
+          isHost={isHost}
+          property_id={card.property_id}
+        /> */}
+
+      </Grid>
     );
+  });
+
+  return (
+
+    <div>
+
+    <Header />
+
+      <div className='host'>
+
+        <HostBookingHistory />
+
+        <br/>
+
+        <h2>Your Properties</h2>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={4}>
+            {cards}
+          </Grid>
+        </Box>
+
+        <br />
+
+        <div>
+          <h3>Add New Property</h3>
+          <br/>
+          <Form />
+          <Button>Create</Button>
+        </div>
+
+      </div>
+    </div>
+
+  );
 }
