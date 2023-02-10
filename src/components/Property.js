@@ -27,9 +27,7 @@ function Property() {
     fetch(`http://localhost:8000/calender/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data,"data")
         setBookedDate(data.bookedDate);
-        console.log(bookedDate,"bookdate")
       })
       .catch(err => {
         throw (err);
@@ -65,7 +63,7 @@ function Property() {
             </div>
 
             <div>
-              {bookedDate && bookedDate.length !== 0 &&
+              {bookedDate &&
               <BookingForm
                 className='booking__form'
                 propertyId={id}
