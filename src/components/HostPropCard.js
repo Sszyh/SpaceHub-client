@@ -1,16 +1,19 @@
-import React from 'react'
-import '../styles/Header.css'
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useState } from "react";
 import Axios from 'axios';
 
-function CardItem(props) {
+import '../styles/Host.css';
+
+export default function HostPropCard(props) {
+
+  // console.log("HostPropCard - props:", props);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -31,8 +34,8 @@ function CardItem(props) {
     Axios.put('http://localhost:8000/properties', data)
       .then(
         res => {
-          console.log('-----------------data---------', res.data.property)
-          console.log('+++++++++++data+++++++++++++++', data)
+          console.log('res.data.property:', res.data.property)
+          console.log('data:', data)
           setData(res.data.property)
         }
       )
@@ -58,6 +61,7 @@ function CardItem(props) {
         title={props.title}
         description={props.desc_short}
       />
+
       <CardContent className='card__info'>
         <Typography gutterBottom variant='h5' component='div'>
           {props.title}
@@ -66,39 +70,28 @@ function CardItem(props) {
           {props.description}
         </Typography>
         <Typography variant='body2' color='GrayText.secondary'>
-          {props.price}
+          <strong>{props.price}</strong> / day
         </Typography>
-        {/* <Typography variant='body2' color='GrayText.secondary'>
-          id {props.property_id}
-        </Typography> */}
       </CardContent>
 
       <CardActions>
 
-        {props.isHost === 0 ?
-          (
-            <>
-              <Button onClick={handleEditForm}>Edit</Button>
-              {
-                showForm && (
-                  <form 
-                    className='edit__form'
-                    onSubmit={(e) => handleSubmit(e)}>
-                      <input type="text" id="desc_short" placeholder="Description" value={data.desc_short} onChange={(e) => { handle(e) }} />
-                      <input type="text" id="price" placeholder="price" value={data.price} onChange={(e) => { handle(e) }} />
-                      <input type="text" id="title" placeholder="Title" value={data.title} onChange={handle} />
-                      <Button type="submit">Submit</Button>
-                  </form>
-                )
-              }
-            </>
-          ) :
-          (<Link to={`../properties/${props.id}`} >
-            Book Now
-          </Link >)}
+        <Button onClick={handleEditForm}>Edit</Button>
+
+          { showForm && (
+            <form
+              className='edit__form'
+              onSubmit={(e) => handleSubmit(e)}>
+              <input type="text" id="title" placeholder="Title" value={data.title} onChange={handle} />
+              <input type="text" id="desc_short" placeholder="Description" value={data.desc_short} onChange={(e) => { handle(e) }} />
+              <input type="text" id="price" placeholder="Price" value={data.price} onChange={(e) => { handle(e) }} />
+              <Button type="submit">Submit</Button>
+            </form>
+          )
+        }
+
       </CardActions>
+
     </Card>
   );
 }
-
-export default CardItem

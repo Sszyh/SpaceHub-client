@@ -1,6 +1,7 @@
 import React from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/StarBorder';
+import '../styles/SearchResult.css';
 import { useNavigate } from "react-router-dom";
 
 export default function SearchItem(props) {
