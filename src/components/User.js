@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
-import SearchItem from './SearchItem';
+import UserBookItem from './UserBookItem';
 import {format} from "date-fns";
 
 
@@ -25,8 +25,7 @@ export default function User() {
 
         return(
             <>
-                
-                <SearchItem
+                <UserBookItem
                     total_price={total.slice(1)}
                     price_per_day={item.price_per_day}
                     src={item.image_url}

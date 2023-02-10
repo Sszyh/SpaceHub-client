@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { useState } from 'react';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+// import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Axios from 'axios';
+
+import '../styles/Host.css';
 
 export default function Form() {
   const url = "http://localhost:8000/host/1"
@@ -53,8 +54,9 @@ export default function Form() {
       autoComplete="off"
       
     >
-      <div>
+      <div className='create__form'>
         <form onSubmit={(e)=>submit(e)}>
+
         <TextField
           required
           id="title"
@@ -63,6 +65,7 @@ export default function Form() {
           onChange={handle}
           value={data.title}
         />
+
         <TextField
           required
           id="image_url"
@@ -73,15 +76,8 @@ export default function Form() {
         />
 
         <TextField
-          id="country"
-          label="Country"     
-          onChange={(e)=>{handle(e)}}
-          value={data.country}     
-        />
-
-         <TextField
           id="street"
-          label="Street"   
+          label="Address"   
           onChange={(e)=>{handle(e)}}
           value={data.street}       
         />
@@ -91,6 +87,20 @@ export default function Form() {
           label="City"    
           onChange={(e)=>{handle(e)}}
           value={data.city}      
+        />
+
+        <TextField
+          id="province"
+          label="Province"    
+          onChange={(e)=>{handle(e)}}
+          value={data.province}      
+        />
+
+        <TextField
+          id="country"
+          label="Country"     
+          onChange={(e)=>{handle(e)}}
+          value={data.country}     
         />
 
         <TextField
@@ -106,7 +116,7 @@ export default function Form() {
           onChange={(e)=>{handle(e)}}
           value={data.desc_short}        
         />
-          <button>Submit</button>
+          {/* <button>Submit</button> */}
         </form>
       </div>
       
