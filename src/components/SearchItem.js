@@ -35,6 +35,7 @@ export default function SearchItem(props) {
                         <h2>{props.price_per_day}</h2>
                         <p>${props.total_price}</p>
                     </div>
+                   
                 </div>
             </div>
         </div>
