@@ -1,9 +1,9 @@
   .maphub {
-  position:absolute; 
-  top:auto; 
+  /* position:absolute;  */
+  /* top:auto;  */
   /* bottom:100%;  */
-  width:100%;
-  height:80%
+  width:40vw;
+  height:1rm
   }
   
   body { 

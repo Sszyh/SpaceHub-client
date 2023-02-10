@@ -33,7 +33,9 @@ export default function SearchList(props){
 
     return(
         <>
-            {list}
+            <div>
+                {list}
+            </div>
         </>
     )
 }
