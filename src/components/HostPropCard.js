@@ -45,7 +45,8 @@ export default function HostPropCard(props) {
     const newdata = { ...data }
     newdata[e.target.id] = e.target.value
     setData(newdata)
-    console.log(data)
+    console.log('handle',data)
+    console.log('newdata',newdata)
   }
 
   return (

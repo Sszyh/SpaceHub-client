@@ -24,7 +24,7 @@ export default function HostBookingHistory() {
 
     const bookingList = host.map((item, index) => {
 
-        console.log("HostBookingHistory - item:", item);
+        // console.log("HostBookingHistory - item:", item);
 
         const total = item.price_for_stay;
         const formattedStartDate = format(new Date(item.check_in_date), "dd MMMM yyyy");
