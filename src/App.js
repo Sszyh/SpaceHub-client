@@ -11,15 +11,17 @@ import User from "./components/User";
 import Host from "./components/Host";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import HostBookingHistory from "./components/HostBookingHistory";
+
 
 function App() {
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:8000/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/message")
+  //     .then((res) => res.json())
+  //     .then((data) => setMessage(data.message));
+  // }, []);
 
   return (
     <div className="app">
@@ -33,6 +35,7 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/user/:id" element={<User />} />
             <Route path="/host/:id" element={<Host />} />
+            <Route path="/host/bookings/:id" element={<HostBookingHistory />} />
             <Route path="/" element={<Home />} />                    
             <Route path="/users/signup" element={<SignUp />} />    
             <Route path="/users/signin" element={<SignIn />} />          

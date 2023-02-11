@@ -7,8 +7,9 @@ import '../styles/SearchResult.css';
 
 
 export default function UserBookItem(props){
-    const [data,setData]=useState({
-        rating:props.rating,
+  console.log("+++++++++++++", props)
+    const [data, setData]=useState({
+        rating:props.rating || 0,
         booking_id:props.booking_id
     });
     const [showForm,setShowForm]=useState(false);
@@ -32,7 +33,14 @@ export default function UserBookItem(props){
 
     function handle(e){
         const newdata = {...data}
-        newdata[e.target.id]=e.target.value
+
+        if (e.target.id === 'rating' && e.target.value > 0) {
+          newdata[e.target.id] = parseInt(e.target.value);
+        } else {
+          newdata[e.target.id] = e.target.value
+        }
+
+        // newdata[e.target.id] = e.target.value
         setData(newdata)
         console.log(data)
       }
@@ -65,7 +73,7 @@ export default function UserBookItem(props){
                     {
                         showForm && (
                             <form onSubmit={(e)=>handleSubmit(e)}>
-                            <input type="text" id="rating" placeholder="5.0" value={data.rating} onChange={handle}/>
+                            <input type="number" id="rating" placeholder="5.0" value={data.rating} onChange={handle}/>
                             <button type="submit">Submit</button>
                             </form>
                             )
