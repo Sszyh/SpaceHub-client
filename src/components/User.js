@@ -16,6 +16,9 @@ export default function User() {
         });
     }, [params.id]);
     console.log(user)
+
+
+
     const bookingList = user.map((item, index)=>{
         const total=item.price_for_stay;
         const formattedStartDate = format(new Date(item.check_in_date),"dd MMMM yyyy");
@@ -24,7 +27,7 @@ export default function User() {
         
 
         return(
-            <>
+            
                 <UserBookItem
                     total_price={total.slice(1)}
                     price_per_day={item.price_per_day}
@@ -37,7 +40,7 @@ export default function User() {
                     key={index}
                 />
                 
-            </>
+            
             
         )
     })

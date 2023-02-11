@@ -5,10 +5,11 @@ import { Button } from '@mui/material'
 import PeopleIcon from '@mui/icons-material/People';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import Popup from 'reactjs-popup';
 import Alert from '@mui/material/Alert';
 
-import { DateRangePicker } from 'react-date-range'
+import { DateRangePicker } from 'react-date-range';
+import { addDays } from 'date-fns';//for date render
+
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 
@@ -33,7 +34,7 @@ const BookingForm = (props) => {
   }
 
   const navigate = useNavigate();
-
+  // console.log(props.bookedDate,"bookeddate props");
   function handleSelect(ranges) {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
@@ -43,9 +44,6 @@ const BookingForm = (props) => {
     const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
     navigate(`/search?days=${totalDays}`);
   }
-
-  //console.log("user_obj:", user_obj);
-  console.log("cookies:", cookies);
 
   // Caculate days
   const date1 = new Date(startDate);
@@ -57,6 +55,28 @@ const BookingForm = (props) => {
   const user_id = cookies[0].user_obj.id;
   const pricePerDay = currentProperty.price_per_day;
 
+  // prepare data for disableDate
+  function getDatesBetween(startDate, endDate) {
+    const dates = [];
+    let currentDate = startDate;
+  
+    while (currentDate <= endDate) {
+      dates.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dates;
+  }
+  
+  const allDates = [];
+
+  props.bookedDate.forEach(booking => {
+    const checkInDate = new Date(booking.check_in_date);
+    const checkOutDate = new Date(booking.check_out_date);
+    const dates = getDatesBetween(checkInDate, checkOutDate);
+    allDates.push(...dates);
+  });
+  
+  // console.log(allDates,"treated data")
 
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${propertyId}`)
@@ -151,6 +171,7 @@ const BookingForm = (props) => {
         startDate={startDate}
         endDate={endDate}
         minDate={new Date()}
+        disabledDates={allDates}
       />
 
       <h2>

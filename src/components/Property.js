@@ -10,6 +10,7 @@ function Property() {
 
   const [property, setProperty] = useState([]);
   const { id } = useParams();
+  const [bookedDate, setBookedDate] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${id}`)
@@ -22,6 +23,16 @@ function Property() {
       })
   }, [id]);
 
+  useEffect(() => {
+    fetch(`http://localhost:8000/calender/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBookedDate(data.bookedDate);
+      })
+      .catch(err => {
+        throw (err);
+      })
+  }, [])
   return (
     <div>
 
@@ -52,12 +63,15 @@ function Property() {
             </div>
 
             <div>
+              {bookedDate &&
               <BookingForm
                 className='booking__form'
                 propertyId={id}
+                bookedDate={bookedDate}
               />
-
+              }
             </div>
+          
           </div>
         </div>
       </div>
