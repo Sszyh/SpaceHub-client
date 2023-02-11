@@ -41,7 +41,7 @@ export default function Form() {
     const newdata = {...data}
     newdata[e.target.id]=e.target.value
     setData(newdata)
-    console.log(data)
+    console.log('handle',data)
   }
 
   return (
@@ -116,7 +116,7 @@ export default function Form() {
           onChange={(e)=>{handle(e)}}
           value={data.desc_short}        
         />
-          {/* <button>Submit</button> */}
+          <button>Submit</button>
         </form>
       </div>
       

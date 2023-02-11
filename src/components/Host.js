@@ -5,7 +5,6 @@ import Header from './Header';
 import HostPropCard from './HostPropCard';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Form from './Form';
 
 import '../styles/Host.css';
@@ -88,7 +87,7 @@ export default function Host() {
           <h3>Add New Property</h3>
           <br/>
           <Form />
-          <Button>Create</Button>
+          
         </div>
 
       </div>
