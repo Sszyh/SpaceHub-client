@@ -39,18 +39,12 @@
   left: 0;
   top: 444px;
   text-transform: inherit;
-  background-color: #ff7779;
+  background-color: #523cb2;
   color: white;
   width: 579px;
 }
 
 .search > .search__button:hover {
   background-color: white;
-  color: #ff7779;
+  color: #523cb2;
 }
-
-
-
-/* .rdrDefinedRangesWrapper {
-  color: black;
-} */

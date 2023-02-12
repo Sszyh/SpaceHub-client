@@ -17,14 +17,14 @@
   margin-top: 15px;
   margin-bottom: 15px;
   text-transform: inherit;
-  background-color: #ff7779;
+  background-color: #523cb2;
   color: white;
   width: 180%;
 }
 
 .edit__form > .edit__button:hover {
   background-color: white;
-  color: #ff7779;
+  color: #523cb2;
 }
 
 
@@ -48,12 +48,12 @@
   margin-top: 20px;
   margin-bottom: 15px;
   text-transform: inherit;
-  background-color: #ff7779;
+  background-color: #523cb2;
   color: white;
   width: 40%;
 }
 
 .create__form > .create__button:hover {
   background-color: white;
-  color: #ff7779;
+  color: #523cb2;
 }
