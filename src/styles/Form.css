@@ -1,0 +1,59 @@
+.edit__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit__form > input {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 8px;
+  width: 180%;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.edit__form > .edit__button {
+  left: 10%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-transform: inherit;
+  background-color: #ff7779;
+  color: white;
+  width: 180%;
+}
+
+.edit__form > .edit__button:hover {
+  background-color: white;
+  color: #ff7779;
+}
+
+
+.create__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create__form > input {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 8px;
+  padding-left: 20px;
+  width: 50%;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.create__form > .create__button {
+  left: 7%;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-transform: inherit;
+  background-color: #ff7779;
+  color: white;
+  width: 40%;
+}
+
+.create__form > .create__button:hover {
+  background-color: white;
+  color: #ff7779;
+}

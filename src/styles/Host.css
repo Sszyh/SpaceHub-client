@@ -2,14 +2,3 @@
   padding: 30px ;
   background-color: lightgrey;
 }
-
-.edit__form {
-  /* display: flex; */
-  background-color: grey;
-}
-
-.create__form {
-  display: flex;
-  /* padding: 10px; */
-  background-color: white;
-}
