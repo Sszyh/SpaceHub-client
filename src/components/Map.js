@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import ReactMapGl, { Marker } from 'react-map-gl';
+import HomeIcon from '@mui/icons-material/Home';
+import { common, deepPurple } from '@mui/material/colors';
+import getCenter from 'geolib/es/getCenter';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/Map.css';
-import getCenter from 'geolib/es/getCenter';
+
 
 export default function Map(props) {
 
@@ -45,7 +49,8 @@ export default function Map(props) {
       <ReactMapGl
         key={props.coord_lat}
         {...viewport}
-        mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
+        // mapStyle='mapbox://styles/sszyh/cldhrjovw001101pf4aqwogcp'
+        mapStyle='mapbox://styles/imdodds/cle3c6zuz000201ldo03vnepi'
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         onDrag={handleDrag}
         onZoom={handleZoom}
@@ -59,10 +64,12 @@ export default function Map(props) {
               offsetLeft={-20}
               offsetTop={-10} >
 
-              <p
+              <div
                 onClick={() => handleClick(result)}
                 // className='cursor-pointer text-2xl animate-bounce'
-              >😈</p>
+              >
+                <HomeIcon color="secondary" />
+              </div>
             </Marker>
           </div>
         ))}

@@ -1,6 +1,7 @@
 .searchResult {
   display: flex;
   position: relative;
+  background-color: #cfcfe5;
   margin: 20px;
   padding: 20px;
   border-bottom: 1px solid grey;
@@ -69,4 +70,5 @@
 .search-page-layout {
   display: flex;
   flex-direction: row;
+  background-color: #cfcfe5;
 }
