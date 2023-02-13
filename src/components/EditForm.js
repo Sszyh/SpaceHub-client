@@ -7,9 +7,9 @@ import '../styles/Form.css';
 export default function EditForm(props) {
 
   const [data, setData] = useState({
-    title: "",
-    price: "",
-    desc_short: "",
+    title: props.title,
+    price: props.price,
+    desc_short: props.desc_short,
     property_id: props.property_id
   })
 

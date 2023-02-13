@@ -13,16 +13,16 @@ import '../styles/Form.css';
 
 export default function HostPropCard(props) {
 
-  // console.log("HostPropCard - props:", props);
+  console.log("HostPropCard - props.property_id:", props.property_id);
 
   const [showForm, setShowForm] = useState(false);
 
-  const [data, setData] = useState({
-    title: "",
-    price: "",
-    desc_short: "",
-    property_id: props.property_id
-  })
+  // const [data, setData] = useState({
+  //   title: props.title,
+  //   price: props.price,
+  //   desc_short: props.desc_short,
+  //   property_id: props.property_id
+  // })
 
   const handleEditForm = () => {
     setShowForm(!showForm);
@@ -84,7 +84,12 @@ export default function HostPropCard(props) {
             onClick={handleEditForm}>Edit</Button>
 
           {showForm && (
-            <EditForm />
+            <EditForm
+              property_id={props.property_id}
+              title={props.title}
+              desc_short={props.description}
+              price={props.price}
+            />
           )}
         </div>
 
