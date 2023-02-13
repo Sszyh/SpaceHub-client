@@ -4,6 +4,7 @@ import Header from './Header';
 import UserBookItem from './UserBookItem';
 import { format } from "date-fns";
 
+import '../styles/User.css';
 
 export default function User() {
 
@@ -24,8 +25,9 @@ export default function User() {
     const total = item.price_for_stay;
     const formattedStartDate = format(new Date(item.check_in_date), "dd MMMM yyyy");
     const formattedEndDate = format(new Date(item.check_out_date), "dd MMMM yyyy");
-    const dateDisplay = formattedStartDate + " ->" + formattedEndDate
+    const dateDisplay = formattedStartDate + " - " + formattedEndDate
 
+    console.log("User - item:", item);
 
     return (
 
@@ -36,7 +38,7 @@ export default function User() {
         title={item.title}
         desc_long={item.desc_long}
         city={dateDisplay}
-        rating={item.rating}
+        average_rating={item.average_rating}
         booking_id={item.id}
         key={index}
       />
@@ -47,7 +49,7 @@ export default function User() {
     <>
       <Header />
 
-      <div>
+      <div className='user'>
         {user[0] && <h2>My booking history</h2>}
         {bookingList}
       </div>
