@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import HostBookingHistory from './HostBookingHistory';
+import HostBookingHistory from './HostBookingHistory';
 import Header from './Header';
 import HostPropCard from './HostPropCard';
 import Grid from '@mui/material/Grid';
@@ -14,6 +14,17 @@ export default function Host() {
 
   const [host, setHost] = useState([]);
   const params = useParams();
+
+  const [showForm, setShowForm] = useState(false);
+  const [showBookingHistory, setShowBookingHistory] = useState(false);
+
+  const handleCreateForm = () => {
+    setShowForm(!showForm);
+  }
+
+  const handleBookingHistory = () => {
+    setShowBookingHistory(!showBookingHistory);
+  }
 
   useEffect(() => {
     fetch(`http://localhost:8000/host/${params.id}`)
@@ -59,7 +70,7 @@ export default function Host() {
 
       <div className='host'>
 
-        <h2>Your Properties</h2>
+        <h2>Your Active Properties</h2>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={4}>
             {cards}
@@ -68,16 +79,29 @@ export default function Host() {
 
         <br />
 
-        <div>
-          <h3>Add New Property</h3>
+        <div className='create'>
+          <Button
+            className='create__button'
+            onClick={handleCreateForm}
+          >Add New Property</Button>
           <br/>
-          <CreateForm />
+          {showForm && (
+            <CreateForm />
+          )}
         </div>
 
-        {/* <HostBookingHistory /> */}
+        <div className='booking__history'>
+          <Button
+            className='booking__history__button'
+            onClick={handleBookingHistory}
+          >Show Booking History</Button>
+          <br/>
+          {showBookingHistory && (
+            <HostBookingHistory />
+          )}
 
+        </div>
       </div>
     </div>
-
   );
 }

@@ -2,3 +2,45 @@
   padding: 30px ;
   background-color: lightgrey;
 }
+
+.create {
+  display: flex;
+  flex-direction: column;
+}
+
+.create > .create__button {
+  /* left: 7%; */
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-transform: inherit;
+  background-color: #523cb2;
+  color: white;
+  width: 40%;
+}
+
+.create > .create__button:hover {
+  background-color: white;
+  color: #523cb2;
+}
+
+
+.booking__history {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking__history > .booking__history__button {
+  /* left: 7%; */
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-transform: inherit;
+  background-color: #523cb2;
+  color: white;
+  width: 40%;
+}
+
+.booking__history > .booking__history__button:hover {
+  background-color: white;
+  color: #523cb2;
+}
+
