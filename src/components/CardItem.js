@@ -1,5 +1,4 @@
-import React from 'react'
-import '../styles/Header.css'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,8 +6,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { useState } from "react";
 import Axios from 'axios';
+
+import '../styles/Header.css';
+import '../styles/Card.css';
 
 function CardItem(props) {
 
@@ -31,8 +32,8 @@ function CardItem(props) {
     Axios.put('http://localhost:8000/properties', data)
       .then(
         res => {
-          console.log('-----------------data---------', res.data.property)
-          console.log('+++++++++++data+++++++++++++++', data)
+          // console.log("res.data.property:", res.data.property)
+          // console.log("data:", data)
           setData(res.data.property)
         }
       )
@@ -68,9 +69,6 @@ function CardItem(props) {
         <Typography variant='body2' color='GrayText.secondary'>
           {props.price}
         </Typography>
-        {/* <Typography variant='body2' color='GrayText.secondary'>
-          id {props.property_id}
-        </Typography> */}
       </CardContent>
 
       <CardActions>
@@ -81,21 +79,27 @@ function CardItem(props) {
               <Button onClick={handleEditForm}>Edit</Button>
               {
                 showForm && (
-                  <form 
+                  <form
                     className='edit__form'
                     onSubmit={(e) => handleSubmit(e)}>
-                      <input type="text" id="desc_short" placeholder="Description" value={data.desc_short} onChange={(e) => { handle(e) }} />
-                      <input type="text" id="price" placeholder="price" value={data.price} onChange={(e) => { handle(e) }} />
-                      <input type="text" id="title" placeholder="Title" value={data.title} onChange={handle} />
-                      <Button type="submit">Submit</Button>
+                    <input type="text" id="desc_short" placeholder="Description" value={data.desc_short} onChange={(e) => { handle(e) }} />
+                    <input type="text" id="price" placeholder="price" value={data.price} onChange={(e) => { handle(e) }} />
+                    <input type="text" id="title" placeholder="Title" value={data.title} onChange={handle} />
+                    <Button type="submit">Submit</Button>
                   </form>
                 )
               }
             </>
           ) :
-          (<Link to={`../properties/${props.id}`} >
-            Book Now
-          </Link >)}
+          (
+            <Link
+              to={`../properties/${props.id}`}
+              className='card__button'
+            >
+              Book Now
+            </Link >
+          )}
+
       </CardActions>
     </Card>
   );
