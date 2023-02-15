@@ -13,6 +13,7 @@ export default function UserBookItem(props) {
 	// console.log("props:", props)
 	const [data, setData] = useState({
 		rating: props.rating || 0,
+		review_message: props.review_message || "",
 		booking_id: props.booking_id
 	});
 
@@ -62,14 +63,14 @@ export default function UserBookItem(props) {
 					<p>{props.city}, {props.province}</p>
 					<p>____</p>
 					{/* <p>{props.desc_long}</p> */}
-					{/* <p>{props.review_message}</p> */}
+					<p>{data.review_message}</p>
 				</div>
 
 				<div className='searchResult__infoBottom'>
 					<div className='searchResult__stars'>
 						<StarIcon className='searchResult__star' />
 						<p>
-							<strong>{props.average_rating}</strong>
+							<strong>{data.rating}</strong>
 						</p>
 					</div>
 
