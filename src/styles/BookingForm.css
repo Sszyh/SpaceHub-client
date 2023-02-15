@@ -2,12 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 300px; */
-  /* padding: 50px; */
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  /* margin: 100px auto; */
 }
 
 .booking__form > label {
@@ -29,7 +26,7 @@
   width: 100%;
   padding: 10px;
   font-size: 18px;
-  background-color: #ff5a5f;
+  background-color: #523cb2;
   color: #fff;
   border: 0;
   border-radius: 5px;
@@ -37,5 +34,5 @@
 }
 
 .booking__form > button:hover {
-  background-color: #ff8a8d;
+  background-color: #523cb2;
 }

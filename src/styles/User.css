@@ -1,0 +1,42 @@
+.user {
+  padding: 30px ;
+  background-color: #cfcfe5;
+}
+
+.user__button {
+  background-color: #523cb2 !important;
+  color: white !important;
+  text-transform: inherit !important;
+  margin-top: 20px !important;
+  font-weight: 600 !important;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  height: 30px;
+  /* min-width: 64px; */
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(25, 118, 210, 0.5);
+  text-decoration: none;
+}
+
+.user__button:hover {
+  background-color: white !important;
+  color: #523cb2 !important;
+}
+
+.review__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.review__form > input {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 8px;
+  padding-left: 20px;
+  width: 150%;
+  height: 40px;
+  border-radius: 999px;
+}

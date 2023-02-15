@@ -1,17 +1,18 @@
 import React, { Fragment, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { Button } from '@mui/material';
+import { Avatar } from '@mui/material/';
+import SearchIcon from '@mui/icons-material/Search';
+import { common, deepPurple } from '@mui/material/colors';
+import Link from '@mui/material/Link';
+// import PeopleIcon from '@mui/icons-material/People';
+import { DateRangePicker } from 'react-date-range'
+
 import '../styles/Header.css';
 import '../styles/Banner.css';
-import '../styles/Search.css'
-import { Button } from '@mui/material'
-import Search from './Search'
-import { Avatar } from '@mui/material/';
-import { useNavigate } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
-import { useCookies } from "react-cookie";
-import { deepOrange, deepPurple } from '@mui/material/colors';
-import Link from '@mui/material/Link';
-import PeopleIcon from '@mui/icons-material/People';
-import { DateRangePicker } from 'react-date-range'
+import '../styles/Search.css';
+import logo from '../logo/logo.png';
 
 
 function Header({ placeholder }) {
@@ -25,8 +26,6 @@ function Header({ placeholder }) {
 
 
   const navigate = useNavigate();
-
-  // console.log(cookies, "cookiessssss");
 
   const handleSearch = () => {
     navigate(`/search/${searchTerm}`);
@@ -73,12 +72,12 @@ function Header({ placeholder }) {
   return (
 
     <div className='header'>
-      <Link to='/'>
+      <Link href='/'>
         {/* Logo */}
         <img
           className='header__icon'
-          src="https://i.pinimg.com/originals/3c/bf/be/3cbfbe148597341fa56f2f87ade90956.png"
-          alt=""
+          src={logo}
+          alt="Logo"
         />
       </Link>
 
@@ -97,15 +96,7 @@ function Header({ placeholder }) {
       <div className='header__right'>
         {cookies.user_obj ?
           <Fragment>
-            <Avatar sx={{ bgcolor: deepOrange[500] }}>
-
-              {/* <Button
-                variant='contained'
-                size="small"
-                color="secondary"
-                onClick={logout}>
-                logout
-                  </Button> */}
+            <Avatar sx={{ bgcolor: deepPurple[500], color: common }}>
 
               <Link href={`/${cookies.user_obj.user_type}/${cookies.user_obj.id}`} underline="none">
                 {cookies.user_obj.first_name}
@@ -113,17 +104,17 @@ function Header({ placeholder }) {
 
             </Avatar>
             <Button
-              variant="text"
+              variant="outline"
               size="small"
-              color="secondary"
+              color="primary"
               onClick={logout}>
-              logout
+              Logout
             </Button>
           </Fragment>
           :
           <Avatar >
             <Link href="/users/signin" underline="none">
-              L
+              Login
             </Link>
           </Avatar>
         }
@@ -144,11 +135,9 @@ function Header({ placeholder }) {
           min={1}
         />
         
-        
         <Button className='search__button' onClick={resetInput}>Cancel</Button>
         <Button className='search__button' onClick={handleClick}>Search SpaceHub</Button>
-       
-
+      
       </div>
     )}
     </div>
