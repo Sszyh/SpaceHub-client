@@ -13,42 +13,11 @@ import '../styles/Form.css';
 
 export default function HostPropCard(props) {
 
-  console.log("HostPropCard - props.property_id:", props.property_id);
-
   const [showForm, setShowForm] = useState(false);
-
-  // const [data, setData] = useState({
-  //   title: props.title,
-  //   price: props.price,
-  //   desc_short: props.desc_short,
-  //   property_id: props.property_id
-  // })
 
   const handleEditForm = () => {
     setShowForm(!showForm);
   }
-
-  // Moved to EditForm component
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   Axios.put('http://localhost:8000/properties', data)
-  //     .then(
-  //       res => {
-  //         console.log('res.data.property:', res.data.property)
-  //         console.log('data:', data)
-  //         setData(res.data.property)
-  //       }
-  //     )
-  // }
-
-  // function handle(e) {
-  //   const newdata = { ...data }
-  //   newdata[e.target.id] = e.target.value
-  //   setData(newdata)
-  //   console.log(data)
-  // }
 
   return (
 

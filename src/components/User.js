@@ -38,7 +38,7 @@ export default function User() {
         title={item.title}
         desc_long={item.desc_long}
         city={dateDisplay}
-        average_rating={item.average_rating}
+        rating={item.rating}
         booking_id={item.id}
         key={index}
       />

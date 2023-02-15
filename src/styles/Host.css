@@ -44,3 +44,9 @@
   color: #523cb2;
 }
 
+.align__right{
+  text-align: right;
+  padding: 20px;
+  padding-right: 40px;;
+}
+
